@@ -2,13 +2,25 @@ package vendingmachine;
 
 public class engine {
      boolean simulating,shutDown,custPanel,maintainerPanel;
-     int totalAmount,coin10=1,coin20=1,coin50=0,coin100=10,totalCash;
+     int totalAmount,coin10=0,coin20=0,coin50=0,coin100=0,totalCash;
      //Amount of Drink
      int[] brand = new int[10];
      //Price of drink
      int[] price= new int[10];
+     //Number of can
+     int[] quantity= new int[10];
+     
+     String password = "123abc";
     
     //Getters
+     
+    public String getPassword(){
+        return password;
+    }
+     
+    public int getQuantity(int x){
+        return quantity[x];
+    }
      
     public int get10c(){
         return coin10;
@@ -67,13 +79,20 @@ public class engine {
     public void setTotalAmount(int x){
         totalAmount=x;
     }    
+    
+    public void setQuantity(int j, int k){
+        quantity[j]=k;
+    }
+    
+    public void setPrice(int j, int k){
+        price[j]=k;
+    }
     //constructor 
     public engine(){
     simulating = false;
     shutDown = false;
     custPanel= false;
     totalAmount= 0;
-    //price[5]=200;
     }
     
     //functions
@@ -99,6 +118,10 @@ public class engine {
                 break;
             default:
         }
+    }
+    
+    public void canDeduction(int x){
+        quantity[x]--;
     }
     
     public void coinDeduction(int x){
