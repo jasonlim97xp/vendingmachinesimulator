@@ -5,7 +5,10 @@
  */
 package vendingmachine;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -18,7 +21,73 @@ public class vmMainCP extends javax.swing.JFrame {
      */
     public vmMainCP(engine runtime) {
         initComponents();
+        PasswordInvalid.setForeground(Color.GREEN);
         this.runtime=runtime;
+        PasswordBox.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e){
+                displayChange();
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e){
+                displayChange();
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e){
+                displayChange();
+            }
+            
+            public void displayChange(){
+                String input = (String) PasswordBox.getText();
+                if(input.equals(runtime.getPassword())){
+                    unlock=1;
+                    PasswordValid.setForeground(Color.GREEN);
+                    PasswordInvalid.setForeground(Color.BLACK);
+                }else{
+                    PasswordInvalid.setForeground(Color.GREEN);
+                    PasswordValid.setForeground(Color.BLACK);
+                    unlock=0;
+                    totalVdenom.setText("");
+                    DPriceChange.setText("");
+                    TotalCash.setText("");
+                    AllCView.setText("");
+                }
+                //System.out.println(PasswordBox.getText());
+            }
+
+        });
+        DPriceChange.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e){
+                displayChange();
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e){
+                displayChange();
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e){
+                displayChange();
+            }
+            
+            public void displayChange(){
+                int newPrice;
+                if("".equals((String) DPriceChange.getText())) 
+                    newPrice=0;
+                else
+                    newPrice= Integer.parseInt((String) DPriceChange.getText());
+                
+                if(unlock==1&&brand!=100){
+                    runtime.setPrice(brand,newPrice);
+                }
+                //System.out.println(PasswordBox.getText());
+            }
+
+        });
     }
 
     /**
@@ -33,13 +102,12 @@ public class vmMainCP extends javax.swing.JFrame {
         TitlePanel = new javax.swing.JPanel();
         VimtoSDDispenser = new javax.swing.JLabel();
         MCPanel = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        PswrdPanel = new javax.swing.JPanel();
         PswrdTiltle = new javax.swing.JLabel();
-        PswrdpPane = new javax.swing.JPasswordField();
-        PswrdValid = new javax.swing.JLabel();
-        PswrdInvalid = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        PasswordBox = new javax.swing.JPasswordField();
+        PasswordValid = new javax.swing.JLabel();
+        PasswordInvalid = new javax.swing.JLabel();
+        CoinDenomPanel = new javax.swing.JPanel();
         DenominationTile = new javax.swing.JLabel();
         coin10 = new javax.swing.JButton();
         coin20 = new javax.swing.JButton();
@@ -47,32 +115,32 @@ public class vmMainCP extends javax.swing.JFrame {
         coin100 = new javax.swing.JButton();
         totaldenom = new javax.swing.JLabel();
         totalVdenom = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
+        NewPricePanel = new javax.swing.JPanel();
         DPriceTile = new javax.swing.JLabel();
         DPriceChange = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
+        TotalCashPanel = new javax.swing.JPanel();
         SeeTotal = new javax.swing.JButton();
         TotalCash = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
+        PressCPanel = new javax.swing.JPanel();
         CollectTile = new javax.swing.JLabel();
         CCashButton = new javax.swing.JRadioButton();
-        jPanel7 = new javax.swing.JPanel();
+        CollectCPanel = new javax.swing.JPanel();
         TakeCTile = new javax.swing.JLabel();
         AllCView = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
+        ShutDownPanel = new javax.swing.JPanel();
         ShutDTile = new javax.swing.JLabel();
         ShutDButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        BrandButtonPanel = new javax.swing.JPanel();
+        B1Button = new javax.swing.JButton();
+        B2Button = new javax.swing.JButton();
+        B3Button = new javax.swing.JButton();
+        B4Button = new javax.swing.JButton();
+        B5Button = new javax.swing.JButton();
+        B6Button = new javax.swing.JButton();
+        B7Button = new javax.swing.JButton();
+        B8Button = new javax.swing.JButton();
+        B9Button = new javax.swing.JButton();
+        B10Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,47 +174,44 @@ public class vmMainCP extends javax.swing.JFrame {
         PswrdTiltle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PswrdTiltle.setText("TYPE PASSWORD HERE");
 
-        PswrdValid.setText("PASSWORD VALID");
-
-        PswrdInvalid.setText("PASSWORD INVALID");
-
-        jButton1.setText("ENTER");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        PasswordBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                PasswordBoxActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(PswrdValid, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PswrdInvalid, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+        PasswordValid.setText("PASSWORD VALID");
+
+        PasswordInvalid.setText("PASSWORD INVALID");
+
+        javax.swing.GroupLayout PswrdPanelLayout = new javax.swing.GroupLayout(PswrdPanel);
+        PswrdPanel.setLayout(PswrdPanelLayout);
+        PswrdPanelLayout.setHorizontalGroup(
+            PswrdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PswrdPanelLayout.createSequentialGroup()
+                .addGroup(PswrdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PswrdPanelLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(PasswordValid, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PasswordInvalid, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PswrdPanelLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(PswrdTiltle, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PasswordBox, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(PswrdTiltle, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PswrdpPane, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(19, 19, 19))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PswrdpPane, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PswrdTiltle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+        PswrdPanelLayout.setVerticalGroup(
+            PswrdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PswrdPanelLayout.createSequentialGroup()
+                .addGroup(PswrdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PasswordBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PswrdTiltle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PswrdInvalid, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(PswrdValid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PswrdPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PasswordInvalid, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(PasswordValid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -191,13 +256,13 @@ public class vmMainCP extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout CoinDenomPanelLayout = new javax.swing.GroupLayout(CoinDenomPanel);
+        CoinDenomPanel.setLayout(CoinDenomPanelLayout);
+        CoinDenomPanelLayout.setHorizontalGroup(
+            CoinDenomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CoinDenomPanelLayout.createSequentialGroup()
+                .addGroup(CoinDenomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CoinDenomPanelLayout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(coin10)
                         .addGap(48, 48, 48)
@@ -207,29 +272,29 @@ public class vmMainCP extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(coin100)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(CoinDenomPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(totaldenom, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(totalVdenom, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(CoinDenomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(DenominationTile, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        CoinDenomPanelLayout.setVerticalGroup(
+            CoinDenomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CoinDenomPanelLayout.createSequentialGroup()
                 .addComponent(DenominationTile, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(CoinDenomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(coin10)
                     .addComponent(coin20)
                     .addComponent(coin50)
                     .addComponent(coin100))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(CoinDenomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totaldenom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(totalVdenom, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
         );
@@ -239,21 +304,21 @@ public class vmMainCP extends javax.swing.JFrame {
 
         DPriceChange.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout NewPricePanelLayout = new javax.swing.GroupLayout(NewPricePanel);
+        NewPricePanel.setLayout(NewPricePanelLayout);
+        NewPricePanelLayout.setHorizontalGroup(
+            NewPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewPricePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(DPriceTile, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(DPriceChange, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        NewPricePanelLayout.setVerticalGroup(
+            NewPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NewPricePanelLayout.createSequentialGroup()
+                .addGroup(NewPricePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DPriceTile, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DPriceChange, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -266,20 +331,20 @@ public class vmMainCP extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout TotalCashPanelLayout = new javax.swing.GroupLayout(TotalCashPanel);
+        TotalCashPanel.setLayout(TotalCashPanelLayout);
+        TotalCashPanelLayout.setHorizontalGroup(
+            TotalCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TotalCashPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(SeeTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(TotalCash, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        TotalCashPanelLayout.setVerticalGroup(
+            TotalCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TotalCashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(SeeTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(TotalCash, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -293,40 +358,40 @@ public class vmMainCP extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout PressCPanelLayout = new javax.swing.GroupLayout(PressCPanel);
+        PressCPanel.setLayout(PressCPanelLayout);
+        PressCPanelLayout.setHorizontalGroup(
+            PressCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PressCPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(CollectTile, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71)
                 .addComponent(CCashButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        PressCPanelLayout.setVerticalGroup(
+            PressCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PressCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(CollectTile, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addComponent(CCashButton))
         );
 
         TakeCTile.setText("COLLECT ALL CASH HERE");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout CollectCPanelLayout = new javax.swing.GroupLayout(CollectCPanel);
+        CollectCPanel.setLayout(CollectCPanelLayout);
+        CollectCPanelLayout.setHorizontalGroup(
+            CollectCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CollectCPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(TakeCTile, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(AllCView, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        CollectCPanelLayout.setVerticalGroup(
+            CollectCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CollectCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(AllCView, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addComponent(TakeCTile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -340,104 +405,144 @@ public class vmMainCP extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout ShutDownPanelLayout = new javax.swing.GroupLayout(ShutDownPanel);
+        ShutDownPanel.setLayout(ShutDownPanelLayout);
+        ShutDownPanelLayout.setHorizontalGroup(
+            ShutDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ShutDownPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(ShutDTile, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ShutDButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ShutDownPanelLayout.setVerticalGroup(
+            ShutDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ShutDownPanelLayout.createSequentialGroup()
+                .addGroup(ShutDownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ShutDTile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGroup(ShutDownPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(ShutDButton, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        jButton2.setText("BRAND 1");
-
-        jButton3.setText("BRAND 2");
-
-        jButton4.setText("BRAND 3");
-
-        jButton5.setText("BRAND 4");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        B1Button.setText("BRAND 1");
+        B1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                B1ButtonActionPerformed(evt);
             }
         });
 
-        jButton6.setText("BRAND 5");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        B2Button.setText("BRAND 2");
+        B2Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                B2ButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setText("BRAND 6");
+        B3Button.setText("BRAND 3");
+        B3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B3ButtonActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("BRAND 7");
+        B4Button.setText("BRAND 4");
+        B4Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B4ButtonActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText("BRAND 8");
+        B5Button.setText("BRAND 5");
+        B5Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B5ButtonActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("BRAND 9");
+        B6Button.setText("BRAND 6");
+        B6Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B6ButtonActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("BRAND 10");
+        B7Button.setText("BRAND 7");
+        B7Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B7ButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        B8Button.setText("BRAND 8");
+        B8Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B8ButtonActionPerformed(evt);
+            }
+        });
+
+        B9Button.setText("BRAND 9");
+        B9Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B9ButtonActionPerformed(evt);
+            }
+        });
+
+        B10Button.setText("BRAND 10");
+        B10Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B10ButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BrandButtonPanelLayout = new javax.swing.GroupLayout(BrandButtonPanel);
+        BrandButtonPanel.setLayout(BrandButtonPanelLayout);
+        BrandButtonPanelLayout.setHorizontalGroup(
+            BrandButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BrandButtonPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                .addGroup(BrandButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BrandButtonPanelLayout.createSequentialGroup()
+                        .addComponent(B1Button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(B2Button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
+                        .addComponent(B3Button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
+                        .addComponent(B4Button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton7)
+                        .addComponent(B5Button))
+                    .addGroup(BrandButtonPanelLayout.createSequentialGroup()
+                        .addComponent(B6Button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8)
+                        .addComponent(B7Button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9)
+                        .addComponent(B8Button)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton10)
+                        .addComponent(B9Button)
                         .addGap(14, 14, 14)
-                        .addComponent(jButton11)))
+                        .addComponent(B10Button)))
                 .addGap(34, 34, 34))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        BrandButtonPanelLayout.setVerticalGroup(
+            BrandButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BrandButtonPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                .addGroup(BrandButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B1Button)
+                    .addComponent(B2Button)
+                    .addComponent(B3Button)
+                    .addComponent(B4Button)
+                    .addComponent(B5Button))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11))
+                .addGroup(BrandButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B6Button)
+                    .addComponent(B7Button)
+                    .addComponent(B8Button)
+                    .addComponent(B9Button)
+                    .addComponent(B10Button))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -446,35 +551,35 @@ public class vmMainCP extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(TitlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PswrdPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CoinDenomPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(NewPricePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TotalCashPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PressCPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(CollectCPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ShutDownPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BrandButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(TitlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PswrdPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CoinDenomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BrandButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NewPricePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TotalCashPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PressCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CollectCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ShutDownPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -483,56 +588,134 @@ public class vmMainCP extends javax.swing.JFrame {
     
     private void coin10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coin10ActionPerformed
         // TODO add your handling code here:
-        totalVdenom.setText(Integer.toString(runtime.get10c()));
+        if(unlock==1){
+            totalVdenom.setText(Integer.toString(runtime.get10c()));
+        }
+        
     }//GEN-LAST:event_coin10ActionPerformed
 
     private void totalVdenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalVdenomActionPerformed
         // TODO add your handling code here:
+        if(unlock==1){
+            
+        }
     }//GEN-LAST:event_totalVdenomActionPerformed
 
     private void ShutDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShutDButtonActionPerformed
         // TODO add your handling code here:
+        if(unlock==1){
+            
+        }
     }//GEN-LAST:event_ShutDButtonActionPerformed
 
     private void coin20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coin20ActionPerformed
-    totalVdenom.setText(Integer.toString(runtime.get20c()));
+        
+        if(unlock==1){
+            totalVdenom.setText(Integer.toString(runtime.get20c()));
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_coin20ActionPerformed
 
     private void coin50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coin50ActionPerformed
-        totalVdenom.setText(Integer.toString(runtime.get50c()));
+        if(unlock==1){
+            totalVdenom.setText(Integer.toString(runtime.get50c()));
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_coin50ActionPerformed
 
     private void coin100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coin100ActionPerformed
-        totalVdenom.setText(Integer.toString(runtime.get100c()));
+        if(unlock==1){
+            totalVdenom.setText(Integer.toString(runtime.get100c()));
+        }
     }//GEN-LAST:event_coin100ActionPerformed
 
     private void SeeTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeeTotalActionPerformed
-        // TODO add your handling code here:
-        TotalCash.setText(Integer.toString(runtime.getTotalCash()));
+        if(unlock==1){
+            TotalCash.setText(Integer.toString(runtime.getTotalCash()));
+        }
+        
     }//GEN-LAST:event_SeeTotalActionPerformed
 
     private void CCashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCashButtonActionPerformed
-        // TODO add your handling code here:
-        AllCView.setText(Integer.toString(runtime.getTotalCash()));
+        if(unlock==1){
+            AllCView.setText(Integer.toString(runtime.getTotalCash()));
+            TotalCash.setText("");
+        }
+        
     }//GEN-LAST:event_CCashButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void B4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ButtonActionPerformed
+       if(unlock==1){
+            brand=3;
+        }
+    }//GEN-LAST:event_B4ButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void B5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        if(unlock==1){
+            brand=4;
+        }
+    }//GEN-LAST:event_B5ButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String pass = "";
-        char[] password = PswrdpPane.getPassword();
-        for(int i=0; i<password.length; i++)
-            pass+=password[i];
-        JOptionPane.showMessageDialog(null, pass);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void PasswordBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordBoxActionPerformed
+        
+    }//GEN-LAST:event_PasswordBoxActionPerformed
+
+    private void B1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+            brand=0;
+        }
+    }//GEN-LAST:event_B1ButtonActionPerformed
+
+    private void B2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+            brand=1;
+        }
+    }//GEN-LAST:event_B2ButtonActionPerformed
+
+    private void B3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+            brand=2;
+        }
+    }//GEN-LAST:event_B3ButtonActionPerformed
+
+    private void B6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+            brand=5;
+        }
+    }//GEN-LAST:event_B6ButtonActionPerformed
+
+    private void B7ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+            brand=6;
+        }
+    }//GEN-LAST:event_B7ButtonActionPerformed
+
+    private void B8ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+           brand=7; 
+        }
+    }//GEN-LAST:event_B8ButtonActionPerformed
+
+    private void B9ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+            brand=8;
+        }
+    }//GEN-LAST:event_B9ButtonActionPerformed
+
+    private void B10ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B10ButtonActionPerformed
+        // TODO add your handling code here:
+        if(unlock==1){
+            brand=9;
+        }
+    }//GEN-LAST:event_B10ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,48 +752,50 @@ public class vmMainCP extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AllCView;
+    private javax.swing.JButton B10Button;
+    private javax.swing.JButton B1Button;
+    private javax.swing.JButton B2Button;
+    private javax.swing.JButton B3Button;
+    private javax.swing.JButton B4Button;
+    private javax.swing.JButton B5Button;
+    private javax.swing.JButton B6Button;
+    private javax.swing.JButton B7Button;
+    private javax.swing.JButton B8Button;
+    private javax.swing.JButton B9Button;
+    private javax.swing.JPanel BrandButtonPanel;
     private javax.swing.JRadioButton CCashButton;
+    private javax.swing.JPanel CoinDenomPanel;
+    private javax.swing.JPanel CollectCPanel;
     private javax.swing.JLabel CollectTile;
     private javax.swing.JTextField DPriceChange;
     private javax.swing.JLabel DPriceTile;
     private javax.swing.JLabel DenominationTile;
     private javax.swing.JLabel MCPanel;
-    private javax.swing.JLabel PswrdInvalid;
+    private javax.swing.JPanel NewPricePanel;
+    private javax.swing.JPasswordField PasswordBox;
+    private javax.swing.JLabel PasswordInvalid;
+    private javax.swing.JLabel PasswordValid;
+    private javax.swing.JPanel PressCPanel;
+    private javax.swing.JPanel PswrdPanel;
     private javax.swing.JLabel PswrdTiltle;
-    private javax.swing.JLabel PswrdValid;
-    private javax.swing.JPasswordField PswrdpPane;
     private javax.swing.JButton SeeTotal;
     private javax.swing.JButton ShutDButton;
     private javax.swing.JLabel ShutDTile;
+    private javax.swing.JPanel ShutDownPanel;
     private javax.swing.JLabel TakeCTile;
     private javax.swing.JPanel TitlePanel;
     private javax.swing.JTextField TotalCash;
+    private javax.swing.JPanel TotalCashPanel;
     private javax.swing.JLabel VimtoSDDispenser;
     private javax.swing.JButton coin10;
     private javax.swing.JButton coin100;
     private javax.swing.JButton coin20;
     private javax.swing.JButton coin50;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField totalVdenom;
     private javax.swing.JLabel totaldenom;
     // End of variables declaration//GEN-END:variables
     engine runtime;
+   // String password="123abc";
+    int unlock,brand=100;
+   // String input;
 }
