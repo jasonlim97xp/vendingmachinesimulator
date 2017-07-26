@@ -17,12 +17,12 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-45,0,0,1,-39"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-45,0,0,1,-23"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="MSCPanel">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>
@@ -31,7 +31,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="MSCTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -48,7 +48,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="PanelPart">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
               <BorderConstraints direction="Center"/>
@@ -58,174 +58,95 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel5" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel7" max="32767" attributes="0"/>
+                      <Component id="CoinPanel" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="StatusPanel" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel45" alignment="1" min="-2" pref="178" max="-2" attributes="0"/>
-                          <Component id="jLabel44" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Component id="DisplayCValue" alignment="1" min="-2" pref="178" max="-2" attributes="0"/>
+                          <Component id="DisplayBValue" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="BrandPanel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
+                      <Component id="DisplayBValue" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" min="-2" pref="219" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
+                      <Component id="BrandPanel" min="-2" pref="191" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel7" min="-2" pref="86" max="-2" attributes="0"/>
+                      <Component id="DisplayCValue" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel4" pref="48" max="32767" attributes="0"/>
+                      <Component id="CoinPanel" min="-2" pref="86" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="StatusPanel" pref="88" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel5">
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
-                <Property name="columns" type="int" value="2"/>
-                <Property name="rows" type="int" value="10"/>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 1"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel3">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel26">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 2"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel27">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel28">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 3"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel29">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel30">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRNKS CANS OF BRAND 4"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel32">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel35">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 5"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel31">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel33">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 6"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel34">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel36">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 7"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel37">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel38">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 8"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel39">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel40">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 9"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel41">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel42">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS OF BRAND 10"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel43">
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JLabel" name="jLabel44">
+            <Component class="javax.swing.JLabel" name="DisplayBValue">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DISPLAY/ENTER NEW VALUE"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel45">
+            <Component class="javax.swing.JLabel" name="DisplayCValue">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DISPLAY/ENTER NEW VALUE"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel7">
+            <Container class="javax.swing.JPanel" name="CoinPanel">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                 <Property name="columns" type="int" value="2"/>
                 <Property name="rows" type="int" value="4"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel4">
+                <Component class="javax.swing.JLabel" name="N10Coin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="NUMBER OF 10c COINS "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel5">
+                <Component class="javax.swing.JLabel" name="Coin10Label">
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel6">
+                <Component class="javax.swing.JLabel" name="N20Coin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="NUMBER OF 20c COINS "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel8">
+                <Component class="javax.swing.JLabel" name="Coin20Label">
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel7">
+                <Component class="javax.swing.JLabel" name="N50Coin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="NUMBER OF 50c COINS"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel9">
+                <Component class="javax.swing.JLabel" name="Coin50Label">
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel10">
+                <Component class="javax.swing.JLabel" name="N100Coin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="NUMBER OF 100c COINS"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel11">
+                <Component class="javax.swing.JLabel" name="Coin100Label">
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel4">
+            <Container class="javax.swing.JPanel" name="StatusPanel">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
                 <Property name="columns" type="int" value="3"/>
                 <Property name="rows" type="int" value="2"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel16">
+                <Component class="javax.swing.JLabel" name="StatusLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="10" style="0"/>
@@ -233,22 +154,104 @@
                     <Property name="text" type="java.lang.String" value="STATUS OF VENDING MACHINE"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel15">
+                <Component class="javax.swing.JLabel" name="LockedLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="LOCKED "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel17">
+                <Component class="javax.swing.JLabel" name="UnlockedLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="UNLOCKED"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel12">
+                <Component class="javax.swing.JLabel" name="Status2Label">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="DOOR LOCK(change status if req)"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="BrandPanel">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                <Property name="columns" type="int" value="2"/>
+                <Property name="rows" type="int" value="10"/>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="B1Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 1"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD1Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B2Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 2"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD2Text">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BD2TextActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="B3Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD3Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B4Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 4"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD4Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B5Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 5"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD5Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B6Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 6"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD6Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B7Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 7"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD7Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B8Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 8"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD8Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B9Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 9"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD9Text">
+                </Component>
+                <Component class="javax.swing.JLabel" name="B10Panel">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NUMBER OF DRINKS CANS BRAND 10"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="BD10Text">
                 </Component>
               </SubComponents>
             </Container>

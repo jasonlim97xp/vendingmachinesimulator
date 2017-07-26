@@ -31,15 +31,27 @@ public class VendingMachine {
                    //runtime.price[i]=i;
                }
                runtime.price[1]=100;
-               runtime.price[2]=150;
+               runtime.price[2]=100;
                runtime.price[3]=200;
-               runtime.price[4]=250;
-               runtime.price[5]=180;
-               runtime.price[6]=90;
-               runtime.price[7]=130;
-               runtime.price[8]=300;
-               runtime.price[9]=240;
-               runtime.price[0]=210;
+               runtime.price[4]=200;
+               runtime.price[5]=50;
+               runtime.price[6]=50;
+               runtime.price[7]=150;
+               runtime.price[8]=100;
+               runtime.price[9]=50;
+               runtime.price[0]=200;
+               
+               runtime.quantity[0]=2;
+               runtime.quantity[1]=1;
+               runtime.quantity[2]=0;
+               runtime.quantity[3]=0;
+               runtime.quantity[4]=0;
+               runtime.quantity[5]=0;
+               runtime.quantity[6]=0;
+               runtime.quantity[7]=0;
+               runtime.quantity[8]=0;
+               runtime.quantity[9]=0;
+               
                
         }
     public static void main(String[] args) {
