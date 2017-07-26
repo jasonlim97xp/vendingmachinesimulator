@@ -1,21 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vendingmachine;
-
-/**
- *
- * @author Brandon-PC
- */
-public class maintainer extends javax.swing.JPanel {
-
-    /**
-     * Creates new form maintainer
-     */
-    public maintainer() {
+public class maintainer extends javax.swing.JFrame {
+    public maintainer(engine runtime) {
         initComponents();
+        setVisible(true);
+        this.runtime = runtime;
     }
 
     /**
@@ -28,216 +16,227 @@ public class maintainer extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel6 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        MSCPanel = new javax.swing.JPanel();
+        MSCTitle = new javax.swing.JLabel();
+        PanelPart = new javax.swing.JPanel();
+        DisplayBValue = new javax.swing.JLabel();
+        DisplayCValue = new javax.swing.JLabel();
+        CoinPanel = new javax.swing.JPanel();
+        N10Coin = new javax.swing.JLabel();
+        Coin10Label = new javax.swing.JLabel();
+        N20Coin = new javax.swing.JLabel();
+        Coin20Label = new javax.swing.JLabel();
+        N50Coin = new javax.swing.JLabel();
+        Coin50Label = new javax.swing.JLabel();
+        N100Coin = new javax.swing.JLabel();
+        Coin100Label = new javax.swing.JLabel();
+        StatusPanel = new javax.swing.JPanel();
+        StatusLabel = new javax.swing.JLabel();
+        LockedLabel = new javax.swing.JLabel();
+        UnlockedLabel = new javax.swing.JLabel();
+        Status2Label = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        BrandPanel = new javax.swing.JPanel();
+        B1Panel = new javax.swing.JLabel();
+        BD1Text = new javax.swing.JTextField();
+        B2Panel = new javax.swing.JLabel();
+        BD2Text = new javax.swing.JTextField();
+        B3Panel = new javax.swing.JLabel();
+        BD3Text = new javax.swing.JTextField();
+        B4Panel = new javax.swing.JLabel();
+        BD4Text = new javax.swing.JTextField();
+        B5Panel = new javax.swing.JLabel();
+        BD5Text = new javax.swing.JTextField();
+        B6Panel = new javax.swing.JLabel();
+        BD6Text = new javax.swing.JTextField();
+        B7Panel = new javax.swing.JLabel();
+        BD7Text = new javax.swing.JTextField();
+        B8Panel = new javax.swing.JLabel();
+        BD8Text = new javax.swing.JTextField();
+        B9Panel = new javax.swing.JLabel();
+        BD9Text = new javax.swing.JTextField();
+        B10Panel = new javax.swing.JLabel();
+        BD10Text = new javax.swing.JTextField();
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        MSCPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MACHINERY SIMULATION CONTROL PANEL");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        MSCTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        MSCTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MSCTitle.setText("MACHINERY SIMULATION CONTROL PANEL");
+        MSCTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MSCPanel.add(MSCTitle, java.awt.BorderLayout.PAGE_START);
 
-        jPanel5.setLayout(new java.awt.GridLayout(10, 2));
+        DisplayBValue.setText("DISPLAY/ENTER NEW VALUE");
 
-        jLabel2.setText("NUMBER OF DRINKS CANS OF BRAND 1");
-        jPanel5.add(jLabel2);
-        jPanel5.add(jLabel3);
+        DisplayCValue.setText("DISPLAY/ENTER NEW VALUE");
 
-        jLabel26.setText("NUMBER OF DRINKS CANS OF BRAND 2");
-        jPanel5.add(jLabel26);
-        jPanel5.add(jLabel27);
+        CoinPanel.setLayout(new java.awt.GridLayout(4, 2));
 
-        jLabel28.setText("NUMBER OF DRINKS CANS OF BRAND 3");
-        jPanel5.add(jLabel28);
-        jPanel5.add(jLabel29);
+        N10Coin.setText("NUMBER OF 10c COINS ");
+        CoinPanel.add(N10Coin);
+        CoinPanel.add(Coin10Label);
 
-        jLabel30.setText("NUMBER OF DRNKS CANS OF BRAND 4");
-        jPanel5.add(jLabel30);
-        jPanel5.add(jLabel32);
+        N20Coin.setText("NUMBER OF 20c COINS ");
+        CoinPanel.add(N20Coin);
+        CoinPanel.add(Coin20Label);
 
-        jLabel35.setText("NUMBER OF DRINKS CANS OF BRAND 5");
-        jPanel5.add(jLabel35);
-        jPanel5.add(jLabel31);
+        N50Coin.setText("NUMBER OF 50c COINS");
+        CoinPanel.add(N50Coin);
+        CoinPanel.add(Coin50Label);
 
-        jLabel33.setText("NUMBER OF DRINKS CANS OF BRAND 6");
-        jPanel5.add(jLabel33);
-        jPanel5.add(jLabel34);
+        N100Coin.setText("NUMBER OF 100c COINS");
+        CoinPanel.add(N100Coin);
+        CoinPanel.add(Coin100Label);
 
-        jLabel36.setText("NUMBER OF DRINKS CANS OF BRAND 7");
-        jPanel5.add(jLabel36);
-        jPanel5.add(jLabel37);
+        StatusPanel.setLayout(new java.awt.GridLayout(2, 3));
 
-        jLabel38.setText("NUMBER OF DRINKS CANS OF BRAND 8");
-        jPanel5.add(jLabel38);
-        jPanel5.add(jLabel39);
+        StatusLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        StatusLabel.setText("STATUS OF VENDING MACHINE");
+        StatusPanel.add(StatusLabel);
 
-        jLabel40.setText("NUMBER OF DRINKS CANS OF BRAND 9");
-        jPanel5.add(jLabel40);
-        jPanel5.add(jLabel41);
+        LockedLabel.setText("LOCKED ");
+        StatusPanel.add(LockedLabel);
 
-        jLabel42.setText("NUMBER OF DRINKS CANS OF BRAND 10");
-        jPanel5.add(jLabel42);
-        jPanel5.add(jLabel43);
+        UnlockedLabel.setText("UNLOCKED");
+        StatusPanel.add(UnlockedLabel);
 
-        jLabel44.setText("DISPLAY/ENTER NEW VALUE");
+        Status2Label.setText("DOOR LOCK(change status if req)");
+        StatusPanel.add(Status2Label);
+        StatusPanel.add(jLabel13);
 
-        jLabel45.setText("DISPLAY/ENTER NEW VALUE");
+        BrandPanel.setLayout(new java.awt.GridLayout(10, 2));
 
-        jPanel7.setLayout(new java.awt.GridLayout(4, 2));
+        B1Panel.setText("NUMBER OF DRINKS CANS BRAND 1");
+        BrandPanel.add(B1Panel);
+        BrandPanel.add(BD1Text);
 
-        jLabel4.setText("NUMBER OF 10c COINS ");
-        jPanel7.add(jLabel4);
-        jPanel7.add(jLabel5);
+        B2Panel.setText("NUMBER OF DRINKS CANS BRAND 2");
+        BrandPanel.add(B2Panel);
 
-        jLabel6.setText("NUMBER OF 20c COINS ");
-        jPanel7.add(jLabel6);
-        jPanel7.add(jLabel8);
+        BD2Text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BD2TextActionPerformed(evt);
+            }
+        });
+        BrandPanel.add(BD2Text);
 
-        jLabel7.setText("NUMBER OF 50c COINS");
-        jPanel7.add(jLabel7);
-        jPanel7.add(jLabel9);
+        B3Panel.setText("NUMBER OF DRINKS CANS BRAND 3");
+        BrandPanel.add(B3Panel);
+        BrandPanel.add(BD3Text);
 
-        jLabel10.setText("NUMBER OF 100c COINS");
-        jPanel7.add(jLabel10);
-        jPanel7.add(jLabel11);
+        B4Panel.setText("NUMBER OF DRINKS CANS BRAND 4");
+        BrandPanel.add(B4Panel);
+        BrandPanel.add(BD4Text);
 
-        jPanel4.setLayout(new java.awt.GridLayout(2, 3));
+        B5Panel.setText("NUMBER OF DRINKS CANS BRAND 5");
+        BrandPanel.add(B5Panel);
+        BrandPanel.add(BD5Text);
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jLabel16.setText("STATUS OF VENDING MACHINE");
-        jPanel4.add(jLabel16);
+        B6Panel.setText("NUMBER OF DRINKS CANS BRAND 6");
+        BrandPanel.add(B6Panel);
+        BrandPanel.add(BD6Text);
 
-        jLabel15.setText("LOCKED ");
-        jPanel4.add(jLabel15);
+        B7Panel.setText("NUMBER OF DRINKS CANS BRAND 7");
+        BrandPanel.add(B7Panel);
+        BrandPanel.add(BD7Text);
 
-        jLabel17.setText("UNLOCKED");
-        jPanel4.add(jLabel17);
+        B8Panel.setText("NUMBER OF DRINKS CANS BRAND 8");
+        BrandPanel.add(B8Panel);
+        BrandPanel.add(BD8Text);
 
-        jLabel12.setText("DOOR LOCK(change status if req)");
-        jPanel4.add(jLabel12);
-        jPanel4.add(jLabel13);
+        B9Panel.setText("NUMBER OF DRINKS CANS BRAND 9");
+        BrandPanel.add(B9Panel);
+        BrandPanel.add(BD9Text);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        B10Panel.setText("NUMBER OF DRINKS CANS BRAND 10");
+        BrandPanel.add(B10Panel);
+        BrandPanel.add(BD10Text);
+
+        javax.swing.GroupLayout PanelPartLayout = new javax.swing.GroupLayout(PanelPart);
+        PanelPart.setLayout(PanelPartLayout);
+        PanelPartLayout.setHorizontalGroup(
+            PanelPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPartLayout.createSequentialGroup()
+                .addComponent(CoinPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(106, 106, 106))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addComponent(StatusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPartLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PanelPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DisplayCValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DisplayBValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(BrandPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        PanelPartLayout.setVerticalGroup(
+            PanelPartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPartLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel44)
+                .addComponent(DisplayBValue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel45)
+                .addComponent(BrandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DisplayCValue)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(CoinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(StatusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+        MSCPanel.add(PanelPart, java.awt.BorderLayout.CENTER);
 
-        add(jPanel1, java.awt.BorderLayout.CENTER);
+        add(MSCPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BD2TextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BD2TextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BD2TextActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel B10Panel;
+    private javax.swing.JLabel B1Panel;
+    private javax.swing.JLabel B2Panel;
+    private javax.swing.JLabel B3Panel;
+    private javax.swing.JLabel B4Panel;
+    private javax.swing.JLabel B5Panel;
+    private javax.swing.JLabel B6Panel;
+    private javax.swing.JLabel B7Panel;
+    private javax.swing.JLabel B8Panel;
+    private javax.swing.JLabel B9Panel;
+    private javax.swing.JTextField BD10Text;
+    private javax.swing.JTextField BD1Text;
+    private javax.swing.JTextField BD2Text;
+    private javax.swing.JTextField BD3Text;
+    private javax.swing.JTextField BD4Text;
+    private javax.swing.JTextField BD5Text;
+    private javax.swing.JTextField BD6Text;
+    private javax.swing.JTextField BD7Text;
+    private javax.swing.JTextField BD8Text;
+    private javax.swing.JTextField BD9Text;
+    private javax.swing.JPanel BrandPanel;
+    private javax.swing.JLabel Coin100Label;
+    private javax.swing.JLabel Coin10Label;
+    private javax.swing.JLabel Coin20Label;
+    private javax.swing.JLabel Coin50Label;
+    private javax.swing.JPanel CoinPanel;
+    private javax.swing.JLabel DisplayBValue;
+    private javax.swing.JLabel DisplayCValue;
+    private javax.swing.JLabel LockedLabel;
+    private javax.swing.JPanel MSCPanel;
+    private javax.swing.JLabel MSCTitle;
+    private javax.swing.JLabel N100Coin;
+    private javax.swing.JLabel N10Coin;
+    private javax.swing.JLabel N20Coin;
+    private javax.swing.JLabel N50Coin;
+    private javax.swing.JPanel PanelPart;
+    private javax.swing.JLabel Status2Label;
+    private javax.swing.JLabel StatusLabel;
+    private javax.swing.JPanel StatusPanel;
+    private javax.swing.JLabel UnlockedLabel;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     // End of variables declaration//GEN-END:variables
+    engine runtime;
 }

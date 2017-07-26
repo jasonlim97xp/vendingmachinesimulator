@@ -8,7 +8,7 @@ public class vmCustPanel extends javax.swing.JFrame {
         initComponents();
         this.runtime=runtime;
         //<editor-fold defaultstate="collapsed" desc="Initialize amount">
-avai0.setText(Integer.toString(runtime.brand[0]));
+/*avai0.setText(Integer.toString(runtime.brand[0]));
 avai1.setText(Integer.toString(runtime.brand[1]));
 avai2.setText(Integer.toString(runtime.brand[2]));
 avai3.setText(Integer.toString(runtime.brand[3]));
@@ -17,7 +17,7 @@ avai5.setText(Integer.toString(runtime.brand[5]));
 avai6.setText(Integer.toString(runtime.brand[6]));
 avai7.setText(Integer.toString(runtime.brand[7]));
 avai8.setText(Integer.toString(runtime.brand[8]));
-avai9.setText(Integer.toString(runtime.brand[9]));
+avai9.setText(Integer.toString(runtime.brand[9]));*/
 //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="Intitialize price">
 price0.setText(Integer.toString(runtime.price[0]));
@@ -36,6 +36,7 @@ price9.setText(Integer.toString(runtime.price[9]));
         for(int i=0;i<10;i++){
             brandNumber[i]=i;
         }
+        updateAvailability();
     }
 
     /**
@@ -387,6 +388,8 @@ price9.setText(Integer.toString(runtime.price[9]));
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void tenCentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenCentButtonActionPerformed
         // TODO add your handling code here
         runtime.total(10);
@@ -483,11 +486,87 @@ price9.setText(Integer.toString(runtime.price[9]));
         eject.setText(" ");
     }//GEN-LAST:event_jButton15ActionPerformed
 
+    private void updateAvailability(){
+        for(int i=0;i<10;i++){
+            if(runtime.getQuantity(i)!=0){
+                switch(i){
+                    case 0:
+                        avai0.setForeground(Color.green);
+                        break;
+                    case 1:
+                        avai1.setForeground(Color.green);
+                        break;
+                    case 2:
+                        avai2.setForeground(Color.green);
+                        break;
+                    case 3:
+                        avai3.setForeground(Color.green);
+                        break;
+                    case 4:
+                        avai4.setForeground(Color.green);
+                        break;
+                    case 5:
+                        avai5.setForeground(Color.green);
+                        break;
+                    case 6:
+                        avai6.setForeground(Color.green);
+                        break;
+                    case 7:
+                        avai7.setForeground(Color.green);
+                        break;
+                    case 8:
+                        avai8.setForeground(Color.green);
+                        break;
+                    case 9:
+                        avai9.setForeground(Color.green);
+                        break;
+                    default:
+                }
+            }else{
+                switch(i){
+                    case 0:
+                        avai0.setForeground(Color.black);
+                        break;
+                    case 1:
+                        avai1.setForeground(Color.black);
+                        break;
+                    case 2:
+                        avai2.setForeground(Color.black);
+                        break;
+                    case 3:
+                        avai3.setForeground(Color.black);
+                        break;
+                    case 4:
+                        avai4.setForeground(Color.black);
+                        break;
+                    case 5:
+                        avai5.setForeground(Color.black);
+                        break;
+                    case 6:
+                        avai6.setForeground(Color.black);
+                        break;
+                    case 7:
+                        avai7.setForeground(Color.black);
+                        break;
+                    case 8:
+                        avai8.setForeground(Color.black);
+                        break;
+                    case 9:
+                        avai9.setForeground(Color.black);
+                        break;
+                    default:
+                }
+            }
+        }
+    }
+    
     private void eject(){
             if (currentPrice==0){
                 return;
             }
             if ((runtime.getTotalAmount() == currentPrice) || (runtime.getTotalAmount()>=currentPrice)){
+                updateAvailability();
+                runtime.canDeduction(currentBrand);
                 eject.setText("Brand " + Integer.toString(currentBrand));
                 //Assign the change left to dispense to tempVal var
                 tempVal = runtime.getTotalAmount()-currentPrice;

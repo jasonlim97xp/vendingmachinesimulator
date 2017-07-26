@@ -75,12 +75,8 @@ public class vmMainCP extends javax.swing.JFrame {
             }
             
             public void displayChange(){
-                int newPrice;
-                if("".equals((String) DPriceChange.getText())) 
-                    newPrice=0;
-                else
-                    newPrice= Integer.parseInt((String) DPriceChange.getText());
                 
+                int newPrice= Integer.parseInt((String) DPriceChange.getText());
                 if(unlock==1&&brand!=100){
                     runtime.setPrice(brand,newPrice);
                 }
