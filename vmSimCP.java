@@ -1,10 +1,12 @@
 package vendingmachine;
 
 public class vmSimCP extends javax.swing.JFrame{
-    public vmSimCP(engine runtime) {
+    
+    public vmSimCP(vmCustPanel custPanel,vmMaintainerCP mainCP) {
         initComponents();
         setVisible(true);
-        this.runtime = runtime;
+        this.custPanel=custPanel;
+        this.mainCP=mainCP;
     }
 
     /**
@@ -132,27 +134,26 @@ public class vmSimCP extends javax.swing.JFrame{
 
     private void beginSimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginSimButtonActionPerformed
         // TODO add your handling code here:
-        runtime.simulating=true;
+        simulating=true;
     }//GEN-LAST:event_beginSimButtonActionPerformed
 
     private void activateCPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateCPButtonActionPerformed
         // TODO add your handling code here:
-        vmCustPanel custPanel = new vmCustPanel(runtime);
         custPanel.setVisible(true);
     }//GEN-LAST:event_activateCPButtonActionPerformed
 
     private void endSimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endSimButtonActionPerformed
         // TODO add your handling code here:
-        runtime.simulating=false;
+        simulating=false;
     }//GEN-LAST:event_endSimButtonActionPerformed
 
     private void activateMPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateMPButtonActionPerformed
-        vmMainCP maintainerPanel = new vmMainCP(runtime);
-        maintainerPanel.setVisible(true);
+        mainCP.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_activateMPButtonActionPerformed
 
     private void ActivateMSPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivateMSPButtonActionPerformed
+        machineryPanel.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_ActivateMSPButtonActionPerformed
 
@@ -212,4 +213,5 @@ public class vmSimCP extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
     engine runtime;
     vmCustPanel custPanel;
+    vmMaintainerCP mainCP;
 }
