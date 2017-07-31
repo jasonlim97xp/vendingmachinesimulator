@@ -25,13 +25,15 @@ public class VendingMachine {
 
             database database= new database();
             vmCustPanelEngine vmCustPanelEngine=new vmCustPanelEngine(database);
-            vmMaintainerCPEngine vmMaintainerCPEngine = new vmMaintainerCPEngine(database);
             vmCustPanel custPanel= new vmCustPanel(vmCustPanelEngine);
-            vmMaintainerCP mainCP= new vmMaintainerCP(vmMaintainerCPEngine);
-            vmSimCP vmSimCP= new vmSimCP(custPanel,mainCP);
+            vmSimCP vmSimCP= new vmSimCP();
+            engine runtime = new engine();
+            vmMachineryCP vmMachineryCP = new vmMachineryCP(runtime);
+            vmMainCP vmMainCP = new vmMainCP(runtime);
             
-                           
         }
+        
+        
     public static void main(String[] args) {
         // TODO code application logic here
         new VendingMachine();
