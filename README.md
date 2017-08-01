@@ -7,10 +7,10 @@ Branches terminology:
 3. Customer Panel= cp
 4. Simulator Control Panel =scp
 
-*Any changes that been made will be committed into a new branch and if there are major changes, new master branch will be created.
+*Any changes that been made will be committed into a new branch and would be merged to the master branch.
 
-Major changes will change the first decimal place (eg. v1 -> 2)
-
-Additional functions will change the second decimal place (eg. v1.1 -> v1.2)
-
-Minor mistakes will change the third decimal place (eg v1.1.1 -> 1.1.2)
+Branch Updated Version Path
+LeeBoonKong-patch-1
+QrioDev-patch-1
+brandonohwaitien-patch-1
+VMCS-V3
