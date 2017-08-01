@@ -27,7 +27,7 @@ public class vmCustPanel extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        invalidLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         totalVal = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -101,9 +101,7 @@ public class vmCustPanel extends javax.swing.JFrame {
         jPanel3.add(jLabel5);
 
         jPanel2.add(jPanel3);
-
-        jLabel2.setText("COINS NOT VALID");
-        jPanel2.add(jLabel2);
+        jPanel2.add(invalidLabel);
 
         jLabel3.setText("TOTAL MONEY INSERTED");
         jPanel2.add(jLabel3);
@@ -336,7 +334,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(5);
         }
@@ -350,7 +348,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(7);
         }
@@ -364,7 +362,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(0);
         }
@@ -378,7 +376,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(1);
         }
@@ -392,7 +390,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(2);
         }      
@@ -406,7 +404,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(3);
         }     
@@ -420,7 +418,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(4);
         }       
@@ -434,7 +432,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(6);
         }     
@@ -448,7 +446,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(8);
         }
@@ -462,7 +460,7 @@ public class vmCustPanel extends javax.swing.JFrame {
             
         } 
         else {
-            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject,invalidLabel);
             coin.setVisible(true);
             sendSignal(9);
         }     
@@ -554,6 +552,10 @@ public class vmCustPanel extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    
+    public void dispose(){
+        this.setVisible(false);
     }
     
     public void updatePrice(){
@@ -703,6 +705,7 @@ public class vmCustPanel extends javax.swing.JFrame {
     private javax.swing.JButton brand9But;
     private javax.swing.JLabel changeValue;
     private javax.swing.JLabel eject;
+    private javax.swing.JLabel invalidLabel;
     private javax.swing.JButton jButton15;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -711,7 +714,6 @@ public class vmCustPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
