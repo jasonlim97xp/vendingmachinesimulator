@@ -9,8 +9,9 @@ Branches terminology:
 
 *Any changes that been made will be committed into a new branch and would be merged to the master branch.
 
-Branch Updated Version Path
-LeeBoonKong-patch-1
-QrioDev-patch-1
-brandonohwaitien-patch-1
-VMCS-V3
+Branch Updated Version Path:
+LeeBoonKong-patch-1  ->  
+QrioDev-patch-1  ->  
+brandonohwaitien-patch-1  ->  
+VMCS-V3  ->  
+VMCS-V3.1 
