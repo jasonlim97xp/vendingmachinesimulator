@@ -1,12 +1,45 @@
 package vendingmachine;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class vmSimCP extends javax.swing.JFrame{
     
-    public vmSimCP(vmCustPanel custPanel,vmMaintainerCP mainCP) {
+    long duration, start, end;
+    int check = 0,mp = 0, msp = 0, seconds = 0;
+    
+    Timer time = new Timer();
+    TimerTask task = new TimerTask(){
+        public void run(){
+            seconds++;
+            if(seconds<60)
+                shutDown.setEnabled(false);
+            else{
+                shutDown.setEnabled(true);
+            }
+        }
+    };
+    
+    public void start(){
+        time.scheduleAtFixedRate(task, 1000, 1000);
+    }
+    
+    public vmSimCP() {
+        initComponents();
+        setVisible(true);
+    }
+            
+    
+    public vmSimCP(vmCustPanel custPanel,vmMaintainerCP vmMaintainerCP,vmMachineryCP vmMachineryCP) {
         initComponents();
         setVisible(true);
         this.custPanel=custPanel;
-        this.mainCP=mainCP;
+        this.vmMaintainerCP=vmMaintainerCP;
+        this.vmMachineryCP=vmMachineryCP;
+        shutDown.setEnabled(false);
+        activateCPButton.setEnabled(false);
+        activateMPButton.setEnabled(false);
+        ActivateMSPButton.setEnabled(false);
     }
 
     /**
@@ -25,10 +58,8 @@ public class vmSimCP extends javax.swing.JFrame{
         beginSimButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         endSimButton = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        shutDown = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         activateCPButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -70,22 +101,16 @@ public class vmSimCP extends javax.swing.JFrame{
         });
         jPanel2.add(endSimButton);
 
-        jLabel7.setText("Turn On");
-        jPanel2.add(jLabel7);
-
-        jButton2.setText("Press");
-        jPanel2.add(jButton2);
-
         jLabel2.setText("ShutDown");
         jPanel2.add(jLabel2);
 
-        jButton1.setText("Press");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        shutDown.setText("Press");
+        shutDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                shutDownActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1);
+        jPanel2.add(shutDown);
 
         jLabel4.setText("Activate Customer Panel");
         jPanel2.add(jLabel4);
@@ -127,33 +152,86 @@ public class vmSimCP extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void shutDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shutDownActionPerformed
         // TODO add your handling code here:
+        if(check == 0)
+            check = 1;
+        else{
+            check = 0;
+        }
+       
+        beginSimButton.setEnabled(true);
+        shutDown.setEnabled(false);
+        activateCPButton.setEnabled(false);
+        activateMPButton.setEnabled(false);
+        ActivateMSPButton.setEnabled(false);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        custPanel.setVisible(false); 
+        vmMaintainerCP.setVisible(false);
+        vmMachineryCP.setVisible(false);
+        mp=0;
+        msp=0;
+    }//GEN-LAST:event_shutDownActionPerformed
 
     private void beginSimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginSimButtonActionPerformed
         // TODO add your handling code here:
-        simulating=true;
+        beginSimButton.setEnabled(false);
+        endSimButton.setEnabled(true);
+        shutDown.setEnabled(true);
+        activateCPButton.setEnabled(true);
+        activateMPButton.setEnabled(true);
+        ActivateMSPButton.setEnabled(true);
+        
+        if(check == 1){
+            seconds=0;
+            start();
+            check=0;
+        }
     }//GEN-LAST:event_beginSimButtonActionPerformed
 
     private void activateCPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateCPButtonActionPerformed
         // TODO add your handling code here:
+        custPanel.updateAvailability();
+        custPanel.updatePrice();
         custPanel.setVisible(true);
+        custPanel.updatePrice();
+        custPanel.updateAvailability();
+        
+        activateCPButton.setEnabled(false);
+        activateMPButton.setEnabled(false);
+        ActivateMSPButton.setEnabled(false);
     }//GEN-LAST:event_activateCPButtonActionPerformed
 
     private void endSimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endSimButtonActionPerformed
         // TODO add your handling code here:
-        simulating=false;
+        System.exit(0);
     }//GEN-LAST:event_endSimButtonActionPerformed
 
     private void activateMPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateMPButtonActionPerformed
-        mainCP.setVisible(true);
+        vmMaintainerCP.setVisible(true);
+        activateCPButton.setEnabled(false);
+        activateMPButton.setEnabled(false);
+        if(mp==0){
+            ActivateMSPButton.setEnabled(true);
+            mp=1;
+        }
+        if(msp==1)
+            ActivateMSPButton.setEnabled(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_activateMPButtonActionPerformed
 
     private void ActivateMSPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivateMSPButtonActionPerformed
-        machineryPanel.setVisible(true);
+        vmMachineryCP.refreshPanel();
+        vmMachineryCP.setVisible(true);
+        activateCPButton.setEnabled(false);
+        if(msp==0){
+            activateMPButton.setEnabled(true);
+            msp=1;
+        }
+        else if(mp==1)
+        activateMPButton.setEnabled(false);
+        ActivateMSPButton.setEnabled(false);
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_ActivateMSPButtonActionPerformed
 
@@ -199,19 +277,19 @@ public class vmSimCP extends javax.swing.JFrame{
     private javax.swing.JButton beginSimButton;
     private javax.swing.JLabel beginSimLabel;
     private javax.swing.JButton endSimButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton shutDown;
     // End of variables declaration//GEN-END:variables
-    engine runtime;
+   // engine runtime;
+    database database;
     vmCustPanel custPanel;
-    vmMaintainerCP mainCP;
+    vmMaintainerCP vmMaintainerCP;
+    vmMachineryCP vmMachineryCP;
 }

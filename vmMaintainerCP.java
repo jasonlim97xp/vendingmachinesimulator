@@ -150,8 +150,6 @@ public class vmMaintainerCP extends javax.swing.JFrame {
         B9Button = new javax.swing.JButton();
         B10Button = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         VimtoSDDispenser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         VimtoSDDispenser.setText("VIMTO SOFT DRINKS DISPENSER");
 
@@ -647,6 +645,7 @@ public class vmMaintainerCP extends javax.swing.JFrame {
     private void CCashButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CCashButtonActionPerformed
         if(unlock==1){
             AllCView.setText(Integer.toString(vmMaintainerCPEngine.displayTotalCash()));
+            vmMaintainerCPEngine.collectCash();
             TotalCash.setText("");
         }
         
