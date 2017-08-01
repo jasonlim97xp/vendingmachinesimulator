@@ -20,12 +20,13 @@ public class coin extends javax.swing.JFrame {
      * @param changeValue
      * @param eject
      */
-    public coin(vmCustPanelEngine vmCustPanelEngine, JLabel totalVal,JLabel changeValue,JLabel eject) {
+    public coin(vmCustPanelEngine vmCustPanelEngine, JLabel totalVal,JLabel changeValue,JLabel eject,JLabel invalidLabel) {
         initComponents();
         this.vmCustPanelEngine=vmCustPanelEngine;
         this.totalVal=totalVal;
         this.changeValue=changeValue;
         this.eject=eject;
+        this.invalidLabel=invalidLabel;
         
     }
 
@@ -44,7 +45,7 @@ public class coin extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        slugButton = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -84,13 +85,13 @@ public class coin extends javax.swing.JFrame {
         });
         jPanel1.add(jButton4);
 
-        jButton5.setText("Slug");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        slugButton.setText("Slug");
+        slugButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                slugButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5);
+        jPanel1.add(slugButton);
 
         getContentPane().add(jPanel1);
 
@@ -100,26 +101,31 @@ public class coin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         sendCoinSignal(10);
+        invalidLabel.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         sendCoinSignal(20);
+        invalidLabel.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         sendCoinSignal(50);
+        invalidLabel.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         sendCoinSignal(100);
+        invalidLabel.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void slugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slugButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        invalidLabel.setText("Invalid Coins");
+    }//GEN-LAST:event_slugButtonActionPerformed
     
     public void sendCoinSignal(int x){
         vmCustPanelEngine.receiveCoin(x);
@@ -173,13 +179,14 @@ public class coin extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton slugButton;
     // End of variables declaration//GEN-END:variables
     vmCustPanelEngine vmCustPanelEngine;
     vmCustPanel custPanel;
     JLabel totalVal;
     JLabel changeValue;
     JLabel eject;
+    JLabel invalidLabel;
 }
