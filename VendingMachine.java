@@ -22,13 +22,29 @@ public class VendingMachine {
             java.util.logging.Logger.getLogger(vmSimCP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 //</editor-fold>
-
-            database database= new database();
+        
+            /*database database= new database();
             vmCustPanelEngine vmCustPanelEngine=new vmCustPanelEngine(database);
             vmMaintainerCPEngine vmMaintainerCPEngine = new vmMaintainerCPEngine(database);
+            vmMachineryCPEngine vmMachineryCPEngine = new vmMachineryCPEngine(database);
             vmCustPanel custPanel= new vmCustPanel(vmCustPanelEngine);
             vmMaintainerCP mainCP= new vmMaintainerCP(vmMaintainerCPEngine);
-            vmSimCP vmSimCP= new vmSimCP(custPanel,mainCP);
+            vmMachineryCP machineryPanel = new vmMachineryCP (vmMachineryCPEngine);
+            
+            vmSimCP vmSimCP= new vmSimCP(custPanel,mainCP,machineryPanel);*/
+            
+            database database= new database();//Initiate Database
+            
+            vmCustPanelEngine vmCustPanelEngine=new vmCustPanelEngine(database);
+            vmCustPanel custPanel= new vmCustPanel(vmCustPanelEngine);//Initiate custPanel Interface and Engine
+            
+            vmMachineryCPEngine vmMachineryCPEngine= new vmMachineryCPEngine(database);
+            vmMachineryCP vmMachineryCP = new vmMachineryCP(vmMachineryCPEngine);//Initiate MachineryCP and Engine
+            
+            vmMaintainerCPEngine vmMaintainerCPEngine = new vmMaintainerCPEngine(database);
+            vmMaintainerCP vmMaintainerCP = new vmMaintainerCP(vmMaintainerCPEngine);// Initiate MaintainerCP and Engine
+            
+            vmSimCP vmSimCP= new vmSimCP(custPanel,vmMaintainerCP,vmMachineryCP);
             
                            
         }

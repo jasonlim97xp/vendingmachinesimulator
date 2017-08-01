@@ -13,23 +13,35 @@ public class database {
     int totalAmount,coin10=0,coin20=0,coin50=0,coin100=0,totalCash;
     int currentBrand=0;
     
+    vmMachineryCP machineryPanel;
+    
     //Password
-    String password="123abc",maintainerPasswordInput;
+    String password="123abc",maintainerPasswordInput="";
     
     //Quantity
     int[] quantity= new int[10];
     //Price
     int[] price=new int[10];
-    //
+    
+    
     public database(){
-        //for testing
+        //For Testing
         quantity[0]=5;
+        quantity[1]=0;
+        quantity[2]=8;
+        quantity[3]=10;
+        quantity[4]=20;
+        quantity[5]=0;
+        quantity[6]=4;
+        quantity[7]=2;
+        quantity[8]=9;
+        quantity[9]=0;
         price[0]=70;
         coin10=10;
         coin20=10;
         coin50=10;
         coin100=10;
-        //endtesting
+        //Testing Ends
     }
     
     //setter
@@ -57,6 +69,7 @@ public class database {
             return true;
         else
             return false;
+        
     }
     
     public int getPrice(int x){
@@ -121,6 +134,7 @@ public class database {
     }
     
     public int totalCash(){
+        totalCash=0;
         for(int i=0;i<coin10;i++){
             totalCash+=10;
         }
@@ -140,6 +154,15 @@ public class database {
         return totalCash;
     }
     
+    public void resetCash(){
+        
+        totalCash=0;
+        coin10=0;
+        coin20=0;
+        coin50=0;
+        coin100=0;
+    }
+    
     public void checkBalanceAvailability(){
         
     }
@@ -150,5 +173,9 @@ public class database {
     
     public void clearBalance(){
         
+    }
+
+    void quantity(int x) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

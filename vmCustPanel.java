@@ -3,40 +3,15 @@ package vendingmachine;
 import java.awt.Color;
 
 public class vmCustPanel extends javax.swing.JFrame {
-
-    public vmCustPanel(engine runtime) {
+    
+    public vmCustPanel(vmCustPanelEngine vmCustPanelEngine) {
         initComponents();
-        this.runtime=runtime;
-        //<editor-fold defaultstate="collapsed" desc="Initialize amount">
-avai0.setText(Integer.toString(runtime.brand[0]));
-avai1.setText(Integer.toString(runtime.brand[1]));
-avai2.setText(Integer.toString(runtime.brand[2]));
-avai3.setText(Integer.toString(runtime.brand[3]));
-avai4.setText(Integer.toString(runtime.brand[4]));
-avai5.setText(Integer.toString(runtime.brand[5]));
-avai6.setText(Integer.toString(runtime.brand[6]));
-avai7.setText(Integer.toString(runtime.brand[7]));
-avai8.setText(Integer.toString(runtime.brand[8]));
-avai9.setText(Integer.toString(runtime.brand[9]));
-//</editor-fold>
-        //<editor-fold defaultstate="collapsed" desc="Intitialize price">
-price0.setText(Integer.toString(runtime.price[0]));
-price1.setText(Integer.toString(runtime.price[1]));
-price2.setText(Integer.toString(runtime.price[2]));
-price3.setText(Integer.toString(runtime.price[3]));
-price4.setText(Integer.toString(runtime.price[4]));
-price5.setText(Integer.toString(runtime.price[5]));
-price6.setText(Integer.toString(runtime.price[6]));
-price7.setText(Integer.toString(runtime.price[7]));
-price8.setText(Integer.toString(runtime.price[8]));
-price9.setText(Integer.toString(runtime.price[9]));
-//</editor-fold>
-        currentPrice=0;
-        currentBrand=0;
-        for(int i=0;i<10;i++){
-            brandNumber[i]=i;
-        }
+        this.vmCustPanelEngine=vmCustPanelEngine;
+        signal=0;
+        updateAvailability();
+        updatePrice();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,10 +27,6 @@ price9.setText(Integer.toString(runtime.price[9]));
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        tenCentButton = new javax.swing.JButton();
-        twentyCentButton = new javax.swing.JButton();
-        fiftyCentButton = new javax.swing.JButton();
-        hundredCentButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         totalVal = new javax.swing.JLabel();
@@ -128,38 +99,6 @@ price9.setText(Integer.toString(runtime.price[9]));
 
         jLabel5.setText("INSERT COIN HERE");
         jPanel3.add(jLabel5);
-
-        tenCentButton.setText("10");
-        tenCentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tenCentButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(tenCentButton);
-
-        twentyCentButton.setText("20");
-        twentyCentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                twentyCentButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(twentyCentButton);
-
-        fiftyCentButton.setText("50");
-        fiftyCentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fiftyCentButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(fiftyCentButton);
-
-        hundredCentButton.setText("100");
-        hundredCentButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hundredCentButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(hundredCentButton);
 
         jPanel2.add(jPanel3);
 
@@ -323,7 +262,7 @@ price9.setText(Integer.toString(runtime.price[9]));
         });
         jPanel4.add(brand8But);
 
-        jLabel27.setText("BRAND 10");
+        jLabel27.setText("BRAND 9");
         jPanel4.add(jLabel27);
         jPanel4.add(price9);
 
@@ -387,107 +326,282 @@ price9.setText(Integer.toString(runtime.price[9]));
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tenCentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenCentButtonActionPerformed
-        // TODO add your handling code here
-        runtime.total(10);
-        
-        totalVal.setText(Integer.toString(runtime.getTotalAmount()));
-        eject();
-    }//GEN-LAST:event_tenCentButtonActionPerformed
-
+    
+    
     private void brand5ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand5ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(5);
-        currentBrand=brandNumber[5];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(5)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(5);
+        }
     }//GEN-LAST:event_brand5ButActionPerformed
 
     private void brand7ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand7ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(7);
-        currentBrand=brandNumber[7];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(7)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(7);
+        }
     }//GEN-LAST:event_brand7ButActionPerformed
-
-    private void twentyCentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twentyCentButtonActionPerformed
-        // TODO add your handling code here:
-        runtime.total(20);
-        totalVal.setText(Integer.toString(runtime.getTotalAmount()));
-        eject();
-    }//GEN-LAST:event_twentyCentButtonActionPerformed
-
-    private void fiftyCentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiftyCentButtonActionPerformed
-        // TODO add your handling code here:
-        runtime.total(50);
-        totalVal.setText(Integer.toString(runtime.getTotalAmount()));
-        eject();
-    }//GEN-LAST:event_fiftyCentButtonActionPerformed
-
-    private void hundredCentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hundredCentButtonActionPerformed
-        // TODO add your handling code here:
-        runtime.total(100);
-        totalVal.setText(Integer.toString(runtime.getTotalAmount()));
-        eject();
-    }//GEN-LAST:event_hundredCentButtonActionPerformed
 
     private void brand0ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand0ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(0);
-        currentBrand=brandNumber[0];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(0)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(0);
+        }
     }//GEN-LAST:event_brand0ButActionPerformed
 
     private void brand1ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand1ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(1);
-        currentBrand=brandNumber[1];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(1)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(1);
+        }
     }//GEN-LAST:event_brand1ButActionPerformed
 
     private void brand2ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand2ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(2);
-        currentBrand=brandNumber[2];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(2)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(2);
+        }      
     }//GEN-LAST:event_brand2ButActionPerformed
 
     private void brand3ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand3ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(3);
-        currentBrand=brandNumber[4];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(3)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(3);
+        }     
     }//GEN-LAST:event_brand3ButActionPerformed
 
     private void brand4ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand4ButActionPerformed
-        // TODO add your handling code here:
-        currentPrice=runtime.getPrice(4);
-        currentBrand=brandNumber[4];    
+        // TODO add your handling code here:   
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(4)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(4);
+        }       
     }//GEN-LAST:event_brand4ButActionPerformed
 
     private void brand6ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand6ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(6);
-        currentBrand=brandNumber[6];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(6)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(6);
+        }     
     }//GEN-LAST:event_brand6ButActionPerformed
 
     private void brand8ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand8ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(8);
-        currentBrand=brandNumber[8];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(8)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(8);
+        }
     }//GEN-LAST:event_brand8ButActionPerformed
 
     private void brand9ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brand9ButActionPerformed
         // TODO add your handling code here:
-        currentPrice=runtime.getPrice(9);
-        currentBrand=brandNumber[9];
+        changeValue.setText("0");
+        updateAvailability();
+        if(vmCustPanelEngine.checkAvailability(9)==0){
+            
+        } 
+        else {
+            coin coin= new coin(vmCustPanelEngine,totalVal,changeValue,eject);
+            coin.setVisible(true);
+            sendSignal(9);
+        }     
     }//GEN-LAST:event_brand9ButActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        changeValue.setText(Integer.toString(runtime.getTotalAmount()));
-        runtime.setTotalAmount(0);
-        eject.setText(" ");
+        sendSignal(20);
+        updateAvailability();
+        changeValue.setText(Integer.toString(vmCustPanelEngine.balance));
+        vmCustPanelEngine.resetBalance();
     }//GEN-LAST:event_jButton15ActionPerformed
 
-    private void eject(){
+    
+    public void sendSignal(int x){
+        vmCustPanelEngine.receiveSignal(x);
+    }
+    
+    
+    public void updateAvailability(){
+        for(int i=0;i<10;i++){
+            if(vmCustPanelEngine.checkAvailability(i)==0){
+                switch(i){
+                    case 0:
+                        avai0.setForeground(Color.green);
+                        break;
+                    case 1:
+                        avai1.setForeground(Color.green);
+                        break;
+                    case 2:
+                        avai2.setForeground(Color.green);
+                        break;
+                    case 3:
+                        avai3.setForeground(Color.green);
+                        break;
+                    case 4:
+                        avai4.setForeground(Color.green);
+                        break;
+                    case 5:
+                        avai5.setForeground(Color.green);
+                        break;
+                    case 6:
+                        avai6.setForeground(Color.green);
+                        break;
+                    case 7:
+                        avai7.setForeground(Color.green);
+                        break;
+                    case 8:
+                        avai8.setForeground(Color.green);
+                        break;
+                    case 9:
+                        avai9.setForeground(Color.green);
+                        break;
+                    default:
+                }
+            }else{
+                switch(i){
+                    case 0:
+                        avai0.setForeground(Color.black);
+                        break;
+                    case 1:
+                        avai1.setForeground(Color.black);
+                        break;
+                    case 2:
+                        avai2.setForeground(Color.black);
+                        break;
+                    case 3:
+                        avai3.setForeground(Color.black);
+                        break;
+                    case 4:
+                        avai4.setForeground(Color.black);
+                        break;
+                    case 5:
+                        avai5.setForeground(Color.black);
+                        break;
+                    case 6:
+                        avai6.setForeground(Color.black);
+                        break;
+                    case 7:
+                        avai7.setForeground(Color.black);
+                        break;
+                    case 8:
+                        avai8.setForeground(Color.black);
+                        break;
+                    case 9:
+                        avai9.setForeground(Color.black);
+                        break;
+                    default:
+                }
+            }
+        }
+    }
+    
+    public void updatePrice(){
+        for(int i=0;i<10;i++){
+                switch(i){
+                    case 0:
+                        price0.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 1:
+                        price1.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 2:
+                        price2.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 3:
+                        price3.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 4:
+                        price4.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 5:
+                        price5.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 6:
+                        price6.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 7:
+                        price7.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 8:
+                        price8.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    case 9:
+                        price9.setText(Integer.toString(vmCustPanelEngine.checkPrice(i)));
+                        break;
+                    default:
+                        break;
+                }
+        }
+    }
+    
+ /*   private void eject(){
             if (currentPrice==0){
                 return;
             }
             if ((runtime.getTotalAmount() == currentPrice) || (runtime.getTotalAmount()>=currentPrice)){
+                updateAvailability();
+                runtime.canDeduction(currentBrand);
                 eject.setText("Brand " + Integer.toString(currentBrand));
                 //Assign the change left to dispense to tempVal var
                 tempVal = runtime.getTotalAmount()-currentPrice;
@@ -529,7 +643,7 @@ price9.setText(Integer.toString(runtime.price[9]));
             }
             
             
-    }
+    }*/
     /**
      * @param args the command line arguments
      */
@@ -589,8 +703,6 @@ price9.setText(Integer.toString(runtime.price[9]));
     private javax.swing.JButton brand9But;
     private javax.swing.JLabel changeValue;
     private javax.swing.JLabel eject;
-    private javax.swing.JButton fiftyCentButton;
-    private javax.swing.JButton hundredCentButton;
     private javax.swing.JButton jButton15;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -631,13 +743,11 @@ price9.setText(Integer.toString(runtime.price[9]));
     private javax.swing.JLabel price7;
     private javax.swing.JLabel price8;
     private javax.swing.JLabel price9;
-    private javax.swing.JButton tenCentButton;
     private javax.swing.JLabel totalVal;
-    private javax.swing.JButton twentyCentButton;
     // End of variables declaration//GEN-END:variables
-    engine runtime;
-    int currentPrice;
-    int[] brandNumber = new int[10];
-    int currentBrand;
-    int tempVal,change;
+    database database;
+    vmCustPanelEngine vmCustPanelEngine;
+    vmCustPanel vmCustPanel;
+    int signal;
+    int coinSignal;
 }
