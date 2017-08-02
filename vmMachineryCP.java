@@ -2,15 +2,25 @@
 package vendingmachine;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
 
 public final class vmMachineryCP extends javax.swing.JFrame{
     int[] inputtext = new int[10];
+    private int close = 0;
     public vmMachineryCP(vmMachineryCPEngine vmMachineryCPEngine) {
         initComponents();
         this.vmMachineryCPEngine = vmMachineryCPEngine;
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close=1;
+            }
+        });
+        
     BD1Text.getDocument().addDocumentListener(new DocumentListener(){
         @Override
             public void insertUpdate(DocumentEvent e){
@@ -427,6 +437,14 @@ public final class vmMachineryCP extends javax.swing.JFrame{
 });
       
 }
+    
+    public int getClose(){
+        return close;
+    }
+    
+    public void setClose(int close){
+        this.close = close;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

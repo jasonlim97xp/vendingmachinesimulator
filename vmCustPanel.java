@@ -1,8 +1,11 @@
 package vendingmachine;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class vmCustPanel extends javax.swing.JFrame {
+    private int close = 0;
     
     public vmCustPanel(vmCustPanelEngine vmCustPanelEngine) {
         initComponents();
@@ -10,6 +13,21 @@ public class vmCustPanel extends javax.swing.JFrame {
         signal=0;
         updateAvailability();
         updatePrice();
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close=1;
+            }
+        });
+    }
+    
+    public int getClose(){
+        return close;
+    }
+    
+    public void setClose(int close){
+        this.close = close;
     }
     
 
@@ -552,10 +570,6 @@ public class vmCustPanel extends javax.swing.JFrame {
                 }
             }
         }
-    }
-    
-    public void dispose(){
-        this.setVisible(false);
     }
     
     public void updatePrice(){
