@@ -154,6 +154,7 @@ public class vmSimCP extends javax.swing.JFrame{
 
     private void shutDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shutDownActionPerformed
         // TODO add your handling code here:
+        vmMaintainerCP.flushPasswordInput();
         if(check == 0)
             check = 1;
         else{
@@ -208,6 +209,7 @@ public class vmSimCP extends javax.swing.JFrame{
     }//GEN-LAST:event_endSimButtonActionPerformed
 
     private void activateMPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateMPButtonActionPerformed
+        vmMaintainerCP.validatePassword();
         vmMaintainerCP.setVisible(true);
         activateCPButton.setEnabled(false);
         activateMPButton.setEnabled(false);

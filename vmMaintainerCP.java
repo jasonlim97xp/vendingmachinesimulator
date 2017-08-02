@@ -91,11 +91,33 @@ public class vmMaintainerCP extends javax.swing.JFrame {
 
         });
     }
+    
+    public void validatePassword(){
+        if(vmMaintainerCPEngine.validation()==true){
+                    unlock=1;
+                    PasswordValid.setForeground(Color.GREEN);
+                    PasswordInvalid.setForeground(Color.BLACK);
+                }else{
+                    PasswordInvalid.setForeground(Color.GREEN);
+                    PasswordValid.setForeground(Color.BLACK);
+                    unlock=0;
+                    totalVdenom.setText("");
+                    DPriceChange.setText("");
+                    TotalCash.setText("");
+                    AllCView.setText("");
+                }
+    }
+ 
+    public void flushPasswordInput(){
+        vmMaintainerCPEngine.resetInput();
+    }
+
 
     vmMaintainerCP() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    
     
 
     /**
@@ -609,6 +631,7 @@ public class vmMaintainerCP extends javax.swing.JFrame {
 
     private void ShutDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShutDButtonActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
         if(unlock==1){
             
         }
@@ -758,6 +781,8 @@ public class vmMaintainerCP extends javax.swing.JFrame {
         /* Create and display the form */
        
     }
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
