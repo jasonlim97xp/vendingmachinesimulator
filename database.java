@@ -51,6 +51,7 @@ public class database {
     
     public void setMaintainerPasswordInput(String x){
         maintainerPasswordInput=x;
+        //maintainerPasswordInput.replaceAll("\\s", "");//Remove whitespace
     }
     
     public void ejectDrink(int x){
@@ -65,7 +66,7 @@ public class database {
     
     //getter
     public boolean passwordValidation(){
-        if (maintainerPasswordInput.equals(password))
+        if (maintainerPasswordInput.replaceAll("\\s", "").equals(password))
             return true;
         else
             return false;
@@ -161,6 +162,10 @@ public class database {
         coin20=0;
         coin50=0;
         coin100=0;
+    }
+    
+    public void flushPasswordInput(){
+        maintainerPasswordInput=" ";
     }
     
     public void checkBalanceAvailability(){

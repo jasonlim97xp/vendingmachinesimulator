@@ -609,6 +609,8 @@ public class vmMaintainerCP extends javax.swing.JFrame {
 
     private void ShutDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShutDButtonActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        vmMaintainerCPEngine.resetInput();
         if(unlock==1){
             
         }
