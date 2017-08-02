@@ -30,7 +30,25 @@ public class vmMaintainerCPEngine {
     }
     
     public void changePrice(int j,int k){
-        database.setPrice(j, k);
+        int tempPrice=k;
+        int newPrice;
+        int roundUpFlag;
+        
+        if(tempPrice%10>=5){
+            roundUpFlag=1;
+        }else
+            roundUpFlag=0;
+        
+        newPrice = k-(tempPrice%10);
+        
+        if (roundUpFlag==1)
+            newPrice+=10;
+        
+        database.setPrice(j, newPrice);
+    }
+    
+    public void resetInput(){
+        database.flushPasswordInput();
     }
     
     //getters
