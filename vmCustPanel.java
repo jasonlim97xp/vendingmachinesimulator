@@ -1,8 +1,11 @@
 package vendingmachine;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class vmCustPanel extends javax.swing.JFrame {
+    private int close = 0;
     
     public vmCustPanel(vmCustPanelEngine vmCustPanelEngine) {
         initComponents();
@@ -10,6 +13,21 @@ public class vmCustPanel extends javax.swing.JFrame {
         signal=0;
         updateAvailability();
         updatePrice();
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close=1;
+            }
+        });
+    }
+    
+    public int getClose(){
+        return close;
+    }
+    
+    public void setClose(int close){
+        this.close = close;
     }
     
 
@@ -260,7 +278,7 @@ public class vmCustPanel extends javax.swing.JFrame {
         });
         jPanel4.add(brand8But);
 
-        jLabel27.setText("BRAND 9");
+        jLabel27.setText("BRAND 10");
         jPanel4.add(jLabel27);
         jPanel4.add(price9);
 
@@ -552,10 +570,10 @@ public class vmCustPanel extends javax.swing.JFrame {
                 }
             }
         }
-    }
-    
-    public void dispose(){
-        this.setVisible(false);
+        
+        if(vmCustPanelEngine.amount10()==0 && vmCustPanelEngine.amount20()==0 && vmCustPanelEngine.amount50()==0 && vmCustPanelEngine.amount100()==0){
+            noChangeBox.setForeground(Color.green);
+        }
     }
     
     public void updatePrice(){

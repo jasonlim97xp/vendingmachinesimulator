@@ -51,6 +51,7 @@ public class database {
     
     public void setMaintainerPasswordInput(String x){
         maintainerPasswordInput=x;
+        //maintainerPasswordInput.replaceAll("\\s", "");//Remove whitespace
     }
     
     public void ejectDrink(int x){
@@ -65,7 +66,7 @@ public class database {
     
     //getter
     public boolean passwordValidation(){
-        if (maintainerPasswordInput.equals(password))
+        if (maintainerPasswordInput.replaceAll("\\s", "").equals(password))
             return true;
         else
             return false;
@@ -109,21 +110,22 @@ public class database {
         return temp;
     }
     
-    public void returnCoin(int x){//Not complete
-        switch(x){
-                case 10:
-                    coin10--;
-                    break;
-                case 20:
-                    coin20--;
-                    break;
-                case 50:
-                    coin50--;
-                    break;
-                case 100:
-                    coin100--;
-                    break;
-                        }
+    public void returnCoin(int x){
+        while(x>0){
+            if (x>=100 && coin100!=0){
+                x-=100;
+                coin100--;
+          }else if (x>=50 && coin50!=0){
+              x-=50;
+              coin50--;
+          }else if (x>=20 && coin20!=0){
+              x-=20;
+              coin20--;
+          }else if (x>=10 && coin10!=0){
+              x-=10;
+              coin10--;
+          }
+    }
     }
     
     public void receiveTotalCoin(int ten,int twenty,int fifty,int hundred){
@@ -162,6 +164,27 @@ public class database {
         coin50=0;
         coin100=0;
     }
+    
+    public void flushPasswordInput(){
+        maintainerPasswordInput=" ";
+    }
+
+    public int getCoin10() {
+        return coin10;
+    }
+
+    public int getCoin20() {
+        return coin20;
+    }
+
+    public int getCoin50() {
+        return coin50;
+    }
+
+    public int getCoin100() {
+        return coin100;
+    }
+    
     
     public void checkBalanceAvailability(){
         
