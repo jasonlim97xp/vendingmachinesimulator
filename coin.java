@@ -135,6 +135,7 @@ public class coin extends javax.swing.JFrame {
            totalVal.setText("0");
            changeValue.setText(Integer.toString(vmCustPanelEngine.getTotalAmount()-vmCustPanelEngine.getCurrentPrice()));
            eject.setText("Brand " + Integer.toString(vmCustPanelEngine.getCurrentBrand()+1));
+           vmCustPanelEngine.reset();
            this.setVisible(false);
         }
     }
