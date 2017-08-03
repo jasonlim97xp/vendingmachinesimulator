@@ -1,11 +1,13 @@
 # vendingmachinesimulator
 BSE 1133 - Software Engineering Assignment
 
-Branches terminology:
-1. Machinery Simulator Panel = msp
-2. Maintainer Panel = mp
-3. Customer Panel= cp
-4. Simulator Control Panel =scp
+File terminology:
+1. Machinery Simulator Panel = vmMachineryCP
+2. Maintainer Panel = vmMaintainerCP
+3. Customer Panel= vmCustPanel
+4. Simulator Control Panel = vmSimCP
+5. Main class = VendingMachine
+6. Database class = database
 
 *Any changes that been made will be committed into a new branch and would be merged to the master branch.
 
