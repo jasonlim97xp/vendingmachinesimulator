@@ -17,6 +17,7 @@ public class vmMachineryCPEngine {
     int totalAmount=0,temp10,temp20,temp50,temp100;
     int balance=0;
     int lastVal;
+    int[] temp = new int[9];
     
     //Constructor
     public vmMachineryCPEngine(database database){
@@ -30,10 +31,23 @@ public class vmMachineryCPEngine {
        return database.getQuantity(x);
     }
     
+    public void setTemp(){
+        for(int i=0;i<9;i++){
+            temp[i]=database.getQuantity(i);
+        }
+    }
+    
     public void setQuantity(int j, int k){
-        if(k<=20)
-            database.quantity[j]=k;
-            }
+        if(k<=20){
+            database.setQuantity(j,k);
+            //System.out.println("ran1");
+        }
+        else{
+            //System.out.println("ran2");
+            database.setQuantity(j,temp[j]);
+            
+        }
+    }
       
 
     

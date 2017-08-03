@@ -42,7 +42,7 @@ public class VendingMachine {
             vmMachineryCP vmMachineryCP = new vmMachineryCP(vmMachineryCPEngine);//Initiate MachineryCP and Engine
             
             vmMaintainerCPEngine vmMaintainerCPEngine = new vmMaintainerCPEngine(database);
-            vmMaintainerCP vmMaintainerCP = new vmMaintainerCP(vmMaintainerCPEngine);// Initiate MaintainerCP and Engine
+            vmMaintainerCP vmMaintainerCP = new vmMaintainerCP(vmMaintainerCPEngine,vmMachineryCP);// Initiate MaintainerCP and Engine
             
             vmSimCP vmSimCP= new vmSimCP(custPanel,vmMaintainerCP,vmMachineryCP);
             
