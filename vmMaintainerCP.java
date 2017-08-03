@@ -6,6 +6,8 @@
 package vendingmachine;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -15,15 +17,25 @@ import javax.swing.event.DocumentListener;
  * @author Izumi Radzuan
  */
 public class vmMaintainerCP extends javax.swing.JFrame {
+    private int close = 0, finish = 0;
 
     /**
      * Creates new form NewJFrame
      */
-    public vmMaintainerCP(vmMaintainerCPEngine vmMaintainerCPEngine) {
+    public vmMaintainerCP(vmMaintainerCPEngine vmMaintainerCPEngine,vmMachineryCP vmMachineryCP) {
         initComponents();
+        finish = 0;
         this.vmMaintainerCPEngine=vmMaintainerCPEngine;
+        this.vmMachineryCP=vmMachineryCP;
         PasswordInvalid.setForeground(Color.GREEN);
-      //  this.runtime=runtime;
+      
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close=1;
+            }
+        });
+      
         PasswordBox.getDocument().addDocumentListener(new DocumentListener(){
             @Override
             public void insertUpdate(DocumentEvent e){
@@ -44,10 +56,12 @@ public class vmMaintainerCP extends javax.swing.JFrame {
                 String input = (String) PasswordBox.getText();
                 vmMaintainerCPEngine.setInput(input);
                 if(vmMaintainerCPEngine.validation()==true){
+                    vmMachineryCP.refreshPanel();
                     unlock=1;
                     PasswordValid.setForeground(Color.GREEN);
                     PasswordInvalid.setForeground(Color.BLACK);
                 }else{
+                    vmMachineryCP.refreshPanel();
                     PasswordInvalid.setForeground(Color.GREEN);
                     PasswordValid.setForeground(Color.BLACK);
                     unlock=0;
@@ -91,11 +105,48 @@ public class vmMaintainerCP extends javax.swing.JFrame {
 
         });
     }
+    
+    public void validatePassword(){
+        if(vmMaintainerCPEngine.validation()==true){
+                    unlock=1;
+                    PasswordValid.setForeground(Color.GREEN);
+                    PasswordInvalid.setForeground(Color.BLACK);
+                }else{
+                    PasswordInvalid.setForeground(Color.GREEN);
+                    PasswordValid.setForeground(Color.BLACK);
+                    unlock=0;
+                    totalVdenom.setText("");
+                    DPriceChange.setText("");
+                    TotalCash.setText("");
+                    AllCView.setText("");
+                }
+    }
+ 
+    public void flushPasswordInput(){
+        vmMaintainerCPEngine.resetInput();
+    }
+
+    public int getClose(){
+        return close;
+    }
+    
+    public void setClose(int close){
+        this.close = close;
+    }
+    
+    public int getFinished(){
+        return finish;
+    }
+    
+    public void setFinished(int finish){
+        this.finish = finish;
+    }
 
     vmMaintainerCP() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    
     
 
     /**
@@ -609,11 +660,15 @@ public class vmMaintainerCP extends javax.swing.JFrame {
 
     private void ShutDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShutDButtonActionPerformed
         // TODO add your handling code here:
+        flushPasswordInput();
+        vmMachineryCP.refreshPanel();
         setVisible(false);
-        vmMaintainerCPEngine.resetInput();
+        
+        finish = 1;
         if(unlock==1){
             
         }
+        
     }//GEN-LAST:event_ShutDButtonActionPerformed
 
     private void coin20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coin20ActionPerformed
@@ -761,6 +816,8 @@ public class vmMaintainerCP extends javax.swing.JFrame {
        
     }
     
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AllCView;
@@ -809,6 +866,7 @@ public class vmMaintainerCP extends javax.swing.JFrame {
     //engine runtime;
     database database;
     vmMaintainerCPEngine vmMaintainerCPEngine;
+    vmMachineryCP vmMachineryCP;
    // String password="123abc";
     int unlock,brand=100;
    // String input;

@@ -117,15 +117,48 @@ public class vmCustPanelEngine {
             default:
                 break;
         }
+        
         if (totalAmount>=currentPrice){
             dispense(currentBrand);
             database.receiveTotalCoin(temp10,temp20,temp50,temp100);
-            database.returnCoin(totalAmount-currentPrice);
             
+            if(checkChange()==true){
+                database.returnCoin(totalAmount-currentPrice); 
+            }
         }
+    }
+    
+    public int amount10(){
+        return database.getCoin10();
+    }
+
+    public int amount20(){
+        return database.getCoin20();
+    }
+
+    public int amount50(){
+        return database.getCoin50();
+    }
+
+    public int amount100(){
+        return database.getCoin100();
+    }
+    
+    public boolean checkChange(){
+        return database.checkCoin();
     }
     
     public void dispense(int x){
         database.ejectDrink(x);
+    }
+    
+    public void reset(){
+        temp10=0;
+        temp20=0;
+        temp50=0;
+        temp100=0;
+        currentBrand=0;
+        currentPrice=0;
+        totalAmount=0;
     }
 }

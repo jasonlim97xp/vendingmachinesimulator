@@ -2,15 +2,25 @@
 package vendingmachine;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
 
 public final class vmMachineryCP extends javax.swing.JFrame{
     int[] inputtext = new int[10];
+    private int close = 0;
     public vmMachineryCP(vmMachineryCPEngine vmMachineryCPEngine) {
         initComponents();
         this.vmMachineryCPEngine = vmMachineryCPEngine;
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close=1;
+            }
+        });
+        
     BD1Text.getDocument().addDocumentListener(new DocumentListener(){
         @Override
             public void insertUpdate(DocumentEvent e){
@@ -32,11 +42,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
         if("".equals((String) BD1Text.getText())) inputtext[0]=0;
         else
             try{
-                if(Integer.parseInt((String) BD1Text.getText()) > 20){
-                    if(unlock==1)
-                    BD1Text.setText(Integer.toString(inputtext[0]));
-                }
-                else{
+                
                     if(unlock==1){
                         inputtext[0] = Integer.parseInt((String) BD1Text.getText());
                         vmMachineryCPEngine.setQuantity(0,inputtext[0]);
@@ -44,7 +50,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD1Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -73,11 +79,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                 if("".equals((String) BD2Text.getText())) inputtext[1]=0;
         else
             try{
-                if(Integer.parseInt((String) BD2Text.getText()) > 20){
-                    if(unlock==1)
-                    BD2Text.setText(Integer.toString(inputtext[1]));
-                }
-                else{
+                
                     if(unlock==1){
                         inputtext[1] = Integer.parseInt((String) BD2Text.getText());
                         vmMachineryCPEngine.setQuantity(1,inputtext[1]);
@@ -85,7 +87,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD2Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -114,11 +116,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
         if("".equals((String) BD3Text.getText())) inputtext[2]=0;
         else
             try{
-                if(Integer.parseInt((String) BD3Text.getText()) > 20){
-                    if(unlock==1)
-                        BD3Text.setText(Integer.toString(inputtext[2]));
-                }
-                else{
+                
                     if(unlock==1){
                         inputtext[2] = Integer.parseInt((String) BD3Text.getText());
                         vmMachineryCPEngine.setQuantity(2,inputtext[2]);
@@ -126,7 +124,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD3Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -155,11 +153,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                 if("".equals((String) BD4Text.getText())) inputtext[3]=0;
         else
             try{
-                if(Integer.parseInt((String) BD4Text.getText()) > 20){
-                    if(unlock==1)
-                        BD4Text.setText(Integer.toString(inputtext[3]));
-                }
-                else{
+                
                     if(unlock==1){
                         inputtext[3] = Integer.parseInt((String) BD4Text.getText());
                         vmMachineryCPEngine.setQuantity(3,inputtext[3]);
@@ -167,7 +161,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD4Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -196,11 +190,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                 if("".equals((String) BD5Text.getText())) inputtext[4]=0;
         else
             try{
-                if(Integer.parseInt((String) BD5Text.getText()) > 20){
-                    if(unlock==1)
-                    BD5Text.setText(Integer.toString(inputtext[4]));
-                }
-                else{
+                
                     if(unlock==1){
                         inputtext[4] = Integer.parseInt((String) BD5Text.getText());
                         vmMachineryCPEngine.setQuantity(4,inputtext[4]);
@@ -208,7 +198,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD5Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -238,11 +228,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                 if("".equals((String) BD6Text.getText())) inputtext[5]=0;
         else
             try{
-                if(Integer.parseInt((String) BD6Text.getText()) > 20){
-                    if(unlock==1)
-                        BD6Text.setText(Integer.toString(inputtext[5]));
-                }
-                else{
+                
                     if(unlock==1){
                         inputtext[5] = Integer.parseInt((String) BD6Text.getText());
                         vmMachineryCPEngine.setQuantity(5,inputtext[5]);
@@ -250,7 +236,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD6Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -279,11 +265,8 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     if("".equals((String) BD7Text.getText())) inputtext[6]=0;
         else
             try{
-                if(Integer.parseInt((String) BD7Text.getText()) > 20){
-                    if(unlock==1)
-                        BD7Text.setText(Integer.toString(inputtext[6]));
-                }
-                else{
+                
+              
                     if(unlock==1){
                     inputtext[6] = Integer.parseInt((String) BD1Text.getText());
                     vmMachineryCPEngine.setQuantity(6,inputtext[6]);
@@ -291,7 +274,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD7Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -320,11 +303,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                 if("".equals((String) BD8Text.getText())) inputtext[7]=0;
         else
             try{
-                if(Integer.parseInt((String) BD8Text.getText()) > 20){
-                    if(unlock==1)
-                        BD8Text.setText(Integer.toString(inputtext[7]));
-                }
-                else{
+                
                     if(unlock==1){
                         inputtext[7] = Integer.parseInt((String) BD8Text.getText());
                         vmMachineryCPEngine.setQuantity(7,inputtext[7]);
@@ -332,7 +311,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                         }else{
                         BD8Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -361,11 +340,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                 if("".equals((String) BD9Text.getText())) inputtext[8]=0;
         else
             try{
-                if(Integer.parseInt((String) BD9Text.getText()) > 20){
-                    if(unlock==1)
-                        BD9Text.setText(Integer.toString(inputtext[8]));
-                }
-                else{
+                
                     if(unlock==1){
                     inputtext[8] = Integer.parseInt((String) BD1Text.getText());
                     vmMachineryCPEngine.setQuantity(8,inputtext[8]);
@@ -373,7 +348,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD9Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -402,11 +377,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                 if("".equals((String) BD10Text.getText())) inputtext[9]=0;
         else
             try{
-                if(Integer.parseInt((String) BD10Text.getText()) > 20){
-                    if(unlock==1)
-                        BD10Text.setText(Integer.toString(inputtext[9]));
-                }
-                else{
+                
                     if(unlock==1){
                     inputtext[9] = Integer.parseInt((String) BD10Text.getText());
                     vmMachineryCPEngine.setQuantity(9,inputtext[9]);
@@ -414,7 +385,7 @@ public final class vmMachineryCP extends javax.swing.JFrame{
                     }else{
                         BD10Text.setText("");
                     }
-                    }
+                    
                 
             }
             catch(Exception ex){
@@ -427,6 +398,14 @@ public final class vmMachineryCP extends javax.swing.JFrame{
 });
       
 }
+    
+    public int getClose(){
+        return close;
+    }
+    
+    public void setClose(int close){
+        this.close = close;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -532,6 +511,11 @@ public final class vmMachineryCP extends javax.swing.JFrame{
         B1Panel.setText("NUMBER OF DRINKS CANS BRAND 1");
         BrandPanel.add(B1Panel);
 
+        BD1Text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BD1TextActionPerformed(evt);
+            }
+        });
         BD1Text.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 BD1TextKeyTyped(evt);
@@ -718,6 +702,10 @@ public final class vmMachineryCP extends javax.swing.JFrame{
         if(!Character.isDigit(evt.getKeyChar())) evt.consume();// TODO add your handling code here:
     }//GEN-LAST:event_BD10TextKeyTyped
 
+    private void BD1TextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BD1TextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BD1TextActionPerformed
+
     public void updateValidation(){
             if(vmMachineryCPEngine.validation()==true){
                         UnlockedLabel.setForeground(Color.green);
@@ -736,11 +724,27 @@ public final class vmMachineryCP extends javax.swing.JFrame{
      
     
     public void refreshPanel(){
+        vmMachineryCPEngine.setTemp();
         updateValidation();
         if(unlock==1){
             displayDrink();
             displayCoin();
             
+        }else{
+            BD1Text.setText("");
+            BD2Text.setText("");
+            BD3Text.setText("");
+            BD4Text.setText("");
+            BD5Text.setText("");
+            BD6Text.setText("");
+            BD7Text.setText("");
+            BD8Text.setText("");
+            BD9Text.setText("");
+            BD10Text.setText("");
+            Coin10Label.setText("");
+            Coin20Label.setText("");
+            Coin50Label.setText("");
+            Coin100Label.setText("");
         }
             
         
