@@ -6,7 +6,7 @@ import java.util.TimerTask;
 public class vmSimCP extends javax.swing.JFrame{
     
     long duration, start, end;
-    int check = 0,mp = 0, msp = 0, seconds = 0;
+    int check = 0,mp = 0, msp = 0, seconds = 0, custClose = 0, mainClose = 0, machineClose = 0, custCheck = 0, finish = 0;
     
     Timer time = new Timer();
     TimerTask task = new TimerTask(){
@@ -20,8 +20,45 @@ public class vmSimCP extends javax.swing.JFrame{
         }
     };
     
+    TimerTask checkOpen = new TimerTask(){
+        public void run(){
+            custClose = custPanel.getClose();
+            mainClose = vmMaintainerCP.getClose();
+            machineClose = vmMachineryCP.getClose();
+            finish = vmMaintainerCP.getFinished();
+            if(custClose == 1){
+                activateCPButton.setEnabled(true);
+                activateMPButton.setEnabled(true);
+                ActivateMSPButton.setEnabled(true);
+                custPanel.setClose(0);
+                custCheck = 0;
+            }
+            if(mainClose == 1 || finish == 1){
+                activateMPButton.setEnabled(true);
+                vmMaintainerCP.setClose(0);
+                vmMaintainerCP.setFinished(0);
+                mp = 0;
+            }
+            if(machineClose == 1){
+                ActivateMSPButton.setEnabled(true);
+                vmMachineryCP.setClose(0);
+                msp = 0;
+            }
+            if(mp == 0 && msp == 0){
+                activateCPButton.setEnabled(true);
+            }
+            if(custCheck == 1)
+                activateCPButton.setEnabled(false);
+        }
+    };
+    
     public void start(){
+        shutDown.setEnabled(false);
         time.scheduleAtFixedRate(task, 1000, 1000);
+    }
+    
+    public void checkOpen(){
+        time.scheduleAtFixedRate(checkOpen, 200, 200);
     }
     
     public vmSimCP() {
@@ -154,6 +191,7 @@ public class vmSimCP extends javax.swing.JFrame{
 
     private void shutDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shutDownActionPerformed
         // TODO add your handling code here:
+        custCheck = 1;
         vmMaintainerCP.flushPasswordInput();
         if(check == 0)
             check = 1;
@@ -176,6 +214,7 @@ public class vmSimCP extends javax.swing.JFrame{
 
     private void beginSimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginSimButtonActionPerformed
         // TODO add your handling code here:
+        custCheck = 0;
         beginSimButton.setEnabled(false);
         endSimButton.setEnabled(true);
         shutDown.setEnabled(true);
@@ -195,12 +234,11 @@ public class vmSimCP extends javax.swing.JFrame{
         custPanel.updateAvailability();
         custPanel.updatePrice();
         custPanel.setVisible(true);
-        custPanel.updatePrice();
-        custPanel.updateAvailability();
-        
+        custCheck = 1;
         activateCPButton.setEnabled(false);
         activateMPButton.setEnabled(false);
         ActivateMSPButton.setEnabled(false);
+        checkOpen();
     }//GEN-LAST:event_activateCPButtonActionPerformed
 
     private void endSimButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endSimButtonActionPerformed
@@ -214,11 +252,10 @@ public class vmSimCP extends javax.swing.JFrame{
         activateCPButton.setEnabled(false);
         activateMPButton.setEnabled(false);
         if(mp==0){
-            ActivateMSPButton.setEnabled(true);
+            activateMPButton.setEnabled(false);
             mp=1;
         }
-        if(msp==1)
-            ActivateMSPButton.setEnabled(false);
+        checkOpen();
         // TODO add your handling code here:
     }//GEN-LAST:event_activateMPButtonActionPerformed
 
@@ -227,13 +264,15 @@ public class vmSimCP extends javax.swing.JFrame{
         vmMachineryCP.setVisible(true);
         activateCPButton.setEnabled(false);
         if(msp==0){
-            activateMPButton.setEnabled(true);
+            ActivateMSPButton.setEnabled(false);
             msp=1;
         }
-        else if(mp==1)
-        activateMPButton.setEnabled(false);
-        ActivateMSPButton.setEnabled(false);
+        if(mp==1 && msp==1){
+            activateMPButton.setEnabled(false);
+            ActivateMSPButton.setEnabled(false);
+        }
         
+        checkOpen();
         // TODO add your handling code here:
     }//GEN-LAST:event_ActivateMSPButtonActionPerformed
 

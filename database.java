@@ -26,21 +26,24 @@ public class database {
     
     public database(){
         //For Testing
-        quantity[0]=5;
-        quantity[1]=0;
-        quantity[2]=8;
-        quantity[3]=10;
-        quantity[4]=20;
-        quantity[5]=0;
-        quantity[6]=4;
-        quantity[7]=2;
-        quantity[8]=9;
-        quantity[9]=0;
+        for (int i=0;i<10;i++){
+            quantity[i]=5;
+        }
         price[0]=70;
-        coin10=10;
-        coin20=10;
-        coin50=10;
-        coin100=10;
+        price[1]=50;
+        price[2]=100;
+        price[3]=40;
+        price[4]=60;
+        price[5]=120;
+        price[6]=150;
+        price[7]=30;
+        price[8]=90;
+        price[9]=80;
+        
+        coin10=0;
+        coin20=0;
+        coin50=0;
+        coin100=0;
         //Testing Ends
     }
     
@@ -60,6 +63,10 @@ public class database {
     
     public void setPrice(int j,int k){
         price[j]=k;
+    }
+    
+    public void setQuantity(int j, int k){
+        quantity[j]=k;
     }
     
     
@@ -89,6 +96,8 @@ public class database {
     
     //Function
     
+    
+    
      public int getCoin(int x){
         int temp;
         switch(x){
@@ -110,21 +119,22 @@ public class database {
         return temp;
     }
     
-    public void returnCoin(int x){//Not complete
-        switch(x){
-                case 10:
-                    coin10--;
-                    break;
-                case 20:
-                    coin20--;
-                    break;
-                case 50:
-                    coin50--;
-                    break;
-                case 100:
-                    coin100--;
-                    break;
-                        }
+    public void returnCoin(int x){
+        while(x>0){
+            if (x>=100 && coin100!=0){
+                x-=100;
+                coin100--;
+          }else if (x>=50 && coin50!=0){
+              x-=50;
+              coin50--;
+          }else if (x>=20 && coin20!=0){
+              x-=20;
+              coin20--;
+          }else if (x>=10 && coin10!=0){
+              x-=10;
+              coin10--;
+          }
+    }
     }
     
     public void receiveTotalCoin(int ten,int twenty,int fifty,int hundred){
@@ -167,19 +177,27 @@ public class database {
     public void flushPasswordInput(){
         maintainerPasswordInput=" ";
     }
-    
-    public void checkBalanceAvailability(){
-        
-    }
-    
-    public void returnChange(){
-        
-    }
-    
-    public void clearBalance(){
-        
+
+    public int getCoin10() {
+        return coin10;
     }
 
+    public int getCoin20() {
+        return coin20;
+    }
+
+    public int getCoin50() {
+        return coin50;
+    }
+
+    public int getCoin100() {
+        return coin100;
+    }
+
+    public boolean checkCoin(){//true if sufficient change
+        return ((coin10>=2)&&(coin20>=1)&&(coin50>=1));
+    }
+    
     void quantity(int x) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -5,6 +5,7 @@
  */
 package vendingmachine;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 
 /**
@@ -20,13 +21,14 @@ public class coin extends javax.swing.JFrame {
      * @param changeValue
      * @param eject
      */
-    public coin(vmCustPanelEngine vmCustPanelEngine, JLabel totalVal,JLabel changeValue,JLabel eject,JLabel invalidLabel) {
+    public coin(vmCustPanelEngine vmCustPanelEngine, JLabel totalVal,JLabel changeValue,JLabel eject,JLabel invalidLabel,JLabel noChangeBox) {
         initComponents();
         this.vmCustPanelEngine=vmCustPanelEngine;
         this.totalVal=totalVal;
         this.changeValue=changeValue;
         this.eject=eject;
         this.invalidLabel=invalidLabel;
+        this.noChangeBox=noChangeBox;
         
     }
 
@@ -133,8 +135,18 @@ public class coin extends javax.swing.JFrame {
         
         if(vmCustPanelEngine.totalAmount>=vmCustPanelEngine.currentPrice){
            totalVal.setText("0");
-           changeValue.setText(Integer.toString(vmCustPanelEngine.getTotalAmount()-vmCustPanelEngine.getCurrentPrice()));
            eject.setText("Brand " + Integer.toString(vmCustPanelEngine.getCurrentBrand()+1));
+           
+           if(vmCustPanelEngine.checkChange()==false){
+               noChangeBox.setForeground(Color.green);
+               changeValue.setText("0");
+               vmCustPanelEngine.reset();
+           }
+           else {
+               noChangeBox.setForeground(Color.black);
+               changeValue.setText(Integer.toString(vmCustPanelEngine.getTotalAmount()-vmCustPanelEngine.getCurrentPrice()));
+               vmCustPanelEngine.reset();
+           }
            this.setVisible(false);
         }
     }
@@ -189,4 +201,5 @@ public class coin extends javax.swing.JFrame {
     JLabel changeValue;
     JLabel eject;
     JLabel invalidLabel;
+    JLabel noChangeBox;
 }
